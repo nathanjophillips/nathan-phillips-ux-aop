@@ -1,4 +1,4 @@
-## Ux-Intern-Onboarding-Project
+## UX Onboarding Project
 **By: Nathan Phillips**
 
 
