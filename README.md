@@ -8,13 +8,13 @@ This app allows you to create and edit user profiles. Each profile has an ID, Na
 
 Users are by default displayed as collapsed cards that can be expanded to show the user's information.
 
-## To Start
+## How to Start
 
 1. Run `$ npm install` to add dependencies.
 2. Run `$ yarn start` to fire up the server
 3. Open `https://localhost:1820` in your browser.
 
-## how to use
+## How to Use
 
 ### Create User
 
