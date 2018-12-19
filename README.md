@@ -11,10 +11,12 @@ Users are by default displayed as collapsed cards that can be expanded to show t
   3. Open `---` in your browser.
 
 ## How to Use
+Create a list of profiles through the use of the following options.
+### Options
+  1. Create New User with 'Create User' Button
+  2. Edit Existing User with `Edit` Button
+  3. Delete Existing User with `Delete` Button
 
-### Create User
-
-### Edit/Delete User
 
 
 
