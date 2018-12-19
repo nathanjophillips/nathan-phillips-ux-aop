@@ -1,7 +1,7 @@
-# ux-intern-onboarding
+# Ux-Intern-Onboarding-Project
 **CURRENTLY UNDER CONSTRUCTION**
 
-## New repository direction
+## By: Nathan Phillips
 ### [Project introduction](https://docs.banno.com/ux/intern-onboarding-project/README/) > README
 - Use `ux-intern-onboarding/README.md` as the project introduction
 - Update the introduction. It's real out of date.
