@@ -1,11 +1,3 @@
----
-name: Custom issue template
-about: Describe this issue template's purpose here.
-title: ''
-labels: ''
-assignees: ''
-
----
 
 # Please complete these issues before attempting this issue
 - [ ] _Include linked issue numbers that need to be finished before this issue is started (doesn't have to be a dependency)_
