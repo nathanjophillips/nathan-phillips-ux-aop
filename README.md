@@ -2,8 +2,7 @@
 **By: Nathan Phillips**
 
 ## Description
-This app allows you to create and edit user profiles. Each profile has an ID, Name, Number, Email Address, and Department.
-Users are by default displayed as collapsed cards that can be expanded to show the user's information.
+This app allows you to create a list of user profiles through the options of `Create User`, `Edit`, and `Delete`. Each specific user profile will request a First Name,Last Name, Phone Number, Email Address, and Department.  Then the User will be given a unique ID number.
 
 ## How to Start
   1. Run `$ npm install` to add dependencies.
@@ -13,7 +12,7 @@ Users are by default displayed as collapsed cards that can be expanded to show t
 ## How to Use
 Create a list of profiles through the use of the following options.
 ### Options
-  1. Create New User with 'Create User' Button
+  1. Create New User with `Create User` Button
   2. Edit Existing User with `Edit` Button
   3. Delete Existing User with `Delete` Button
 
