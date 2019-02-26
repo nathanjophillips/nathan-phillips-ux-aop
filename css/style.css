@@ -28,6 +28,7 @@ table, fieldset {
     border-radius: 3px;
     padding: 30px;
     margin-top: 10px;
+    width: 350px;
 }
 fieldset {
     max-width: 375px;
