@@ -60,3 +60,7 @@ input {
     border-bottom: 1px solid indigo;
     background: transparent;
   }
+  .collapse {
+    display: none;
+  }
+  
