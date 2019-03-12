@@ -36,17 +36,17 @@
       </tr>
       <tr>
         <td>
-          <button id="bText"  Onclick="openClose()">Collapse</button>
+          <button id="cardToggleButton"  onclick="cardExpandCollapse()">Collapse</button>
         </td>
       </tr>
     </table>
     <script>
-      function openClose() {
+      function cardExpandCollapse() {
         var collapse = document.getElementsByClassName("expand");
-        var buttonText = document.getElementById("bText");
+        var buttonText = document.getElementById("cardToggleButton");
 
         for (var i = 0; i < collapse.length; i++) {
-          collapse[i].classList.toggle("collapse");
+         collapse[i].classList.toggle("collapse");
         }
 
         if (buttonText.innerHTML === "Collapse") {
