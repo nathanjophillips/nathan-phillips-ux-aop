@@ -17,7 +17,7 @@
       </nav>
     </header>
     <h3>User Profile</h3>
-    <table id="userCard"> 
+    <table> 
       <tr>
         <td>ID:</td>
         <td>#0000</td>
@@ -42,16 +42,16 @@
     </table>
     <script>
       function cardExpandCollapse(element) {
-        const collapses = element.parentNode.parentNode.parentNode.querySelectorAll('.expand');
-        var buttonText = document.getElementById("cardToggleButton");
+        const collapses = element.parentNode.parentNode.parentNode.querySelectorAll(".expand");
+        const buttonText = document.getElementById("cardToggleButton");
 
         collapses.forEach (collapse => {
           collapse.classList.toggle('collapse');
         });
 
-        if (buttonText.innerHTML == "Collapse") {
+        if (buttonText.innerHTML === "Collapse") {
             buttonText.innerHTML = "Expand";
-          } else if (buttonText.innerHTML == "Expand") {
+          } else if (buttonText.innerHTML === "Expand") {
             buttonText.innerHTML = "Collapse";
           };
       }
