@@ -68,15 +68,9 @@
         const button = element;
         const collapses = element.parentNode.parentNode.parentNode.querySelectorAll(".expand");
 
-        collapses.forEach (collapse => {
-          collapse.classList.toggle('collapse');
-        });
-        
-        if (button.textContent === "Collapse") {
-          button.textContent = "Expand";
-        } else if (button.textContent === "Expand") {
-          button.textContent = "Collapse";
-        }
+        collapses.forEach(dataElement => { dataElement.classList.toggle('collapse'); });
+
+        button.textContent = button.textContent === "Collapse" ? "Expand" : "Collapse";
       }
     </script>
   </body>
