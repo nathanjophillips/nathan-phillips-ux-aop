@@ -36,82 +36,48 @@
       </tr>
       <tr>
         <td>
-          <button id="cardToggleButton"  onclick="cardExpandCollapse(this)">Collapse</button>
+          <button onclick="cardExpandCollapse(this)">Collapse</button>
+        </td>
+      </tr>
+    </table>
+    <table> 
+      <tr>
+        <td>ID:</td>
+        <td>#0000</td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td>John Smith</td>
+      </tr>
+      <tr class="expand">
+        <td>Phone:</td>
+        <td>000-576-5309</td>
+      </tr>
+      <tr class="expand">
+        <td>Email:</td>
+        <td>john.smith@banno.com</td>
+      </tr>
+      <tr>
+        <td>
+          <button onclick="cardExpandCollapse(this)">Collapse</button>
         </td>
       </tr>
     </table>
     <script>
       function cardExpandCollapse(element) {
+        const button = element;
         const collapses = element.parentNode.parentNode.parentNode.querySelectorAll(".expand");
-        const buttonText = document.getElementById("cardToggleButton");
 
         collapses.forEach (collapse => {
           collapse.classList.toggle('collapse');
         });
-
-        if (buttonText.innerHTML === "Collapse") {
-          buttonText.innerHTML = "Expand";
-        } else if (buttonText.innerHTML === "Expand") {
-            buttonText.innerHTML = "Collapse";
+        
+        if (button.textContent === "Collapse") {
+          button.textContent = "Expand";
+        } else if (button.textContent === "Expand") {
+          button.textContent = "Collapse";
         }
       }
-
-//        var target = event.target;
-  //      var collapse = document.getElementsByClassName("expand");
-
- //       if collapse == ("expand") {
-//          collapse.target.style.visibility = 'hidden';
-  //      }
-
-    //    collapse(event) {
-  
-  
-
-
-
-
-
-
-
-        // get by id
-        // target children that i want hidden
-        // make sure it's an array
-        // set classes for specific items in array
-        /*
-        const parent = document.getElementById("userCard");
-        const children = parent.children;
-        const moreChildren = children.childElementCount;
-        
-        //const children = parent.children;
-        //const childrenOfChildren = child
-
-       // var collapse = children.filter(getElementsByClassName("expand"));
-        var buttonText = document.getElementById("cardToggleButton");
-      //  console.log(collapse)
-        console.log(parent)
-        console.log(children)
-        console.log(moreChildren)
-        
-        */
-        
-       // if (buttonText.innerHTML == "Collapse") {
-       //   collapse.style.display = "none";
-       //   buttonText.innerHTML = "Expand";
-       // } else {
-       //   collapse.style.display = "table-row";
-       //   buttonText.innerHTML = "Collapse";
-       // }
-        /*
-        for (var i = 0; i < collapse.length; i++) {
-         collapse[i].classList.toggle("collapse");
-        }
-
-        if (buttonText.innerHTML === "Collapse") {
-          buttonText.innerHTML = "Expand";
-        } else {
-          buttonText.innerHTML = "Collapse";
-        }*/
-      
     </script>
   </body>
 </html>
