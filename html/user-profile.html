@@ -43,12 +43,75 @@
     <script>
       function cardExpandCollapse(element) {
         const collapses = element.parentNode.parentNode.parentNode.querySelectorAll('.expand');
+        var buttonText = document.getElementById("cardToggleButton");
 
         collapses.forEach (collapse => {
           collapse.classList.toggle('collapse');
         });
+
+        if (buttonText.innerHTML == "Collapse") {
+            buttonText.innerHTML = "Expand";
+          } else if (buttonText.innerHTML == "Expand") {
+            buttonText.innerHTML = "Collapse";
+          };
       }
 
+//        var target = event.target;
+  //      var collapse = document.getElementsByClassName("expand");
+
+ //       if collapse == ("expand") {
+//          collapse.target.style.visibility = 'hidden';
+  //      }
+
+    //    collapse(event) {
+  
+  
+
+
+
+
+
+
+
+        // get by id
+        // target children that i want hidden
+        // make sure it's an array
+        // set classes for specific items in array
+        /*
+        const parent = document.getElementById("userCard");
+        const children = parent.children;
+        const moreChildren = children.childElementCount;
+        
+        //const children = parent.children;
+        //const childrenOfChildren = child
+
+       // var collapse = children.filter(getElementsByClassName("expand"));
+        var buttonText = document.getElementById("cardToggleButton");
+      //  console.log(collapse)
+        console.log(parent)
+        console.log(children)
+        console.log(moreChildren)
+        
+        */
+        
+       // if (buttonText.innerHTML == "Collapse") {
+       //   collapse.style.display = "none";
+       //   buttonText.innerHTML = "Expand";
+       // } else {
+       //   collapse.style.display = "table-row";
+       //   buttonText.innerHTML = "Collapse";
+       // }
+        /*
+        for (var i = 0; i < collapse.length; i++) {
+         collapse[i].classList.toggle("collapse");
+        }
+
+        if (buttonText.innerHTML === "Collapse") {
+          buttonText.innerHTML = "Expand";
+        } else {
+          buttonText.innerHTML = "Collapse";
+        }*/
+      
     </script>
   </body>
 </html>
