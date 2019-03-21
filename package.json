@@ -3,13 +3,11 @@
   "version": "1.0.0",
   "main": "index.html",
   "dependencies": {
-    "http": "^0.0.0",
     "server": "^1.0.18"
   },
   "devDependencies": {},
   "scripts": {
-    "build": "babel src -d lib",
-    "start": "http-server ./src -p 1820"
+    "start": "http-server ./src/index.html -p 1820"
   },
   "repository": {
     "type": "git",
@@ -19,6 +17,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/phillnab/nathan-phillips-ux-iop/issues"
-  },
-  "homepage": "https://github.com/phillnab/nathan-phillips-ux-iop#readme"
+  }
 }
