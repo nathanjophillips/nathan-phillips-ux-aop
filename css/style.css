@@ -68,4 +68,11 @@ input {
     border: 0;
     border-bottom: 1px solid indigo;
     background: transparent;
+}
+.expand {
+    display: table-row;
+}
+.collapse {
+    display: none;
   }
+  
