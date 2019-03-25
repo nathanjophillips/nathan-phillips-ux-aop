@@ -1,0 +1,20 @@
+{
+  "name": "ux-onboarding-project",
+  "version": "1.0.0",
+  "main": "index.html",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "start": "http-server ./src -p 1820"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phillnab/nathan-phillips-ux-iop.git"
+  },
+  "author": "Nathan Phillips",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phillnab/nathan-phillips-ux-iop/issues"
+  }
+}
