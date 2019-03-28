@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.html",
   "devDependencies": {
-    "http-server": "^0.11.1"
+    "eslint": "^5.15.3",
+    "http-server": "^0.11.1",
+    "ux-lint": "^1.8.0"
   },
   "scripts": {
+    "prestart": "yarn lint",
+    "lint": "ux-lint src/*.html",
     "start": "http-server ./src -p 1820"
   },
   "repository": {
