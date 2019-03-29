@@ -6,8 +6,5 @@
 "env": {
     "node": true,
     "browser": true
-},
-"rules": {
-   "no-unused-expressions": "off"
 }
 }
