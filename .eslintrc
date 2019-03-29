@@ -8,7 +8,6 @@
     "browser": true
 },
 "rules": {
-    "no-implicit-globals": ["error", "never"]
-    
+   "no-unused-expressions": "off"
 }
 }

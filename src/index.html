@@ -64,14 +64,16 @@
       </tr>
     </table>
     <script>
-      function cardExpandCollapse(element) {
-        const button = element;
-        const collapses = element.parentNode.parentNode.parentNode.querySelectorAll('expand');
+      'use strict';
+      () => { // eslint-disable-line no-unused-expressions
+        window.cardExpandCollapse = button => {
+          const collapses = button.parentNode.parentNode.parentNode.querySelectorAll('.expand');
 
-        collapses.forEach(dataElement => { dataElement.classList.toggle('collapse'); });
+          collapses.forEach(dataElement => dataElement.classList.toggle('collapse'));
 
-        button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
-      }
+          button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
+        };
+      };
     </script>
   </body>
 </html>
