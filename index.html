@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <title>User Profile</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="'dist/style.css'" />
 </head>
   <body>
     <header>
@@ -63,7 +63,7 @@
         </td>
       </tr>
     </table>
-    <script>
+    <script type="text/javascript" src="dist/bundle.js">
       'use strict';
       window.cardExpandCollapse = button => {
         const collapses = button.parentNode.parentNode.parentNode.querySelectorAll('.expand');
