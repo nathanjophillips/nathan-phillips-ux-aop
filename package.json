@@ -15,8 +15,8 @@
     "url": "git+https://github.com/phillnab/nathan-phillips-ux-iop.git"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
+    "@babel/core": "^7.4.3",
+    "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^2.1.1",
@@ -27,12 +27,12 @@
     "ux-lint": "^1.8.0",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.2.1"
+    "webpack-dev-server": "^3.2.1",
+    "@webcomponents/webcomponentsjs": "^1.0.14"
   },
   "dependencies": {
     "@babel/preset-env": "^7.4.3",
     "@banno/jha-design-components": "^0.3.0",
-    "@banno/polymer": "^2.3.1",
-    "common.js": "^1.1.1"
+    "@banno/polymer": "^2.3.1"
   }
 }
