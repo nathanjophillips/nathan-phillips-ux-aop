@@ -57,7 +57,7 @@ module.exports = env => {
 		plugins: [
       new webpack.NormalModuleReplacementPlugin(
         /\/node_modules\/@banno\/polymer\/polymer\.html$/,
-        '@banno/polymer/polymer-element.js'
+        '@banno/polymer/polymer-element.html'
       ),
       new HtmlWebPackPlugin({
         template: path.resolve(__dirname, './src/index.ejs'),
