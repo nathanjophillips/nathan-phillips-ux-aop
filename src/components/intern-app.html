@@ -68,8 +68,7 @@
     </div>
   </template>
   <script type="module">
-    import { Element as PolymerElement } from '@banno/polymer/polymer-element.html';
-    class InternApp extends PolymerElement {
+    class InternApp extends Polymer.Element {
       static get is() { return 'intern-app'; }
     }
     customElements.define(InternApp.is, InternApp);
