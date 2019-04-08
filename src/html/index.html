@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <title>User Profile</title>
-  <link rel="stylesheet" type="text/css" href="'dist/style.css'" />
+  <link rel="stylesheet" type="text/css" href="./../assets/css/global.css" />
 </head>
   <body>
     <header>
@@ -63,13 +63,11 @@
         </td>
       </tr>
     </table>
-    <script type="text/javascript" src="dist/bundle.js">
+    <script>
       'use strict';
       window.cardExpandCollapse = button => {
         const collapses = button.parentNode.parentNode.parentNode.querySelectorAll('.expand');
-
         collapses.forEach(dataElement => dataElement.classList.toggle('collapse'));
-
         button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
       };
     </script>

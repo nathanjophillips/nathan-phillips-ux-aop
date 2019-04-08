@@ -73,6 +73,10 @@ module.exports = env => {
         {
           from: path.resolve(__dirname, './src/assets/css/global.css'),
           to: './assets/css/global.css'
+        },
+        {
+          from: path.resolve(__dirname, './src/html/*.html'),
+          to: './html/[name].html'
         }
       ]),
 		],
