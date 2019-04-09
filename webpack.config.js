@@ -27,12 +27,6 @@ module.exports = env => {
 					]
         },
 				{
-          test: /polymer\.html$/,
-          include: [
-            path.resolve(__dirname, './node_modules/@banno/polymer')
-          ]
-        },
-				{
           test: /\.js$/,
           use: 'babel-loader',
         },
@@ -50,7 +44,6 @@ module.exports = env => {
 			contentBase: path.join(__dirname, 'dist'),
 			compress: true,
 			port: 1820
-
     },
     devtool: 'source-map',
 		plugins: [
