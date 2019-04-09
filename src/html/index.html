@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <title>User Profile</title>
-  <link rel="stylesheet" type="text/css" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="./../assets/css/global.css" />
 </head>
   <body>
     <header>
@@ -67,9 +67,7 @@
       'use strict';
       window.cardExpandCollapse = button => {
         const collapses = button.parentNode.parentNode.parentNode.querySelectorAll('.expand');
-
         collapses.forEach(dataElement => dataElement.classList.toggle('collapse'));
-
         button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
       };
     </script>
