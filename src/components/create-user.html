@@ -2,37 +2,20 @@
 <dom-module id="create-user">
   <template>
     <style>
-      ul {
-        display: inline-flex;
-        white-space: nowrap;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      a {
-        display: list-item;
-        text-decoration: none;
-        background-color: indigo;
-        color: #fcfcff;
-        padding: 14px 25px;
-      }
-      a:hover {
-        background-color: DarkSlateBlue;
-      }
-      table,
       fieldset {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background: #eef1f4;
         border-radius: 3px;
-        padding: 30px;
         margin-top: 10px;
-        width: 350px;
+        width: 375px;
       }
       fieldset {
-        max-width: 375px;
         padding: 15px;
         border: none;
-        padding: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background: #eef1f4;
+        border-radius: 3px;
+        margin-top: 10px;
       }
       fieldset div {
         text-align: left;
@@ -85,16 +68,6 @@
   <script type="module">
     class CreateUser extends Polymer.Element {
       static get is() { return 'create-user'; }
-
-      static get properties() {
-          return {
-              id: Number,
-              firstName: String,
-              lastName: String,
-              phoneNumber: Number,
-              email: String
-          };
-      }
     }
     customElements.define(CreateUser.is, CreateUser);
     export default CreateUser;

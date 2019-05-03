@@ -7,16 +7,7 @@
 <dom-module id="intern-app">
   <template>
     <style>
-      ul {
-        display: inline-flex;
-        white-space: nowrap;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
       h1 {
-        display: list-item;
-        text-decoration: none;
         background-color: indigo;
         color: #fcfcff;
         padding: 14px 25px;
@@ -24,45 +15,6 @@
       }
       h1:hover {
         background-color: DarkSlateBlue;
-      }
-      table,
-      fieldset {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background: #eef1f4;
-        border-radius: 3px;
-        padding: 30px;
-        margin-top: 10px;
-        width: 350px;
-      }
-      fieldset {
-        max-width: 375px;
-        padding: 15px;
-        border: none;
-        padding: 20px;
-      }
-      fieldset div {
-        text-align: left;
-        margin-top: 15px;
-      }
-      button {
-        background-color: DarkSlateBlue;
-        color: #fcfcff;
-        border-radius: 3px;
-        text-align: center;
-        padding: 10px;
-        margin-top: 20px;
-      }
-      label {
-        font-size: 18px;
-        margin-top: 25px;
-        padding-left: 30px;
-        padding-right: 5px;
-      }
-      input {
-        font-size: 18px;
-        border: 0;
-        border-bottom: 1px solid indigo;
-        background: transparent;
       }
     </style>
     <header>
@@ -80,27 +32,26 @@
     <user-list></user-list>
   </template>
   <script type="module">
-     
     class InternApp extends Polymer.Element {
-        static get is() { return 'intern-app'; }
+      static get is() { return 'intern-app'; }
 
-        static get properties() {
-          return {
-            user: {
-              type: Object,
-              value: () => {
-                return {
-                  id: "001",
-                  firstName: "Nicolas",
-                  lastName: "Cage",
-                  phoneNumber: 8675309,
-                  email: "nick@nickcage.com"
-                }
-              },
+      static get properties() {
+        return {
+          user: {
+            type: Object,
+            value: () => {
+              return {
+                id: "001",
+                firstName: "Nicolas",
+                lastName: "Cage",
+                phoneNumber: 8675309,
+                email: "nick@nickcage.com"
+              }
             },
-          };
-        }
+          },
+        };
       }
+    }
     customElements.define(InternApp.is, InternApp);
     export default InternApp;
   </script>

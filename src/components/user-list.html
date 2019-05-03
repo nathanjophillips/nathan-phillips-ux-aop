@@ -1,63 +1,16 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
+<link rel="import" href="./user-profile.html">
 
 <dom-module id="user-list">
   <template>
     <style>
-      ul {
-        display: inline-flex;
-        white-space: nowrap;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      a {
-        display: list-item;
-        text-decoration: none;
-        background-color: indigo;
-        color: #fcfcff;
-        padding: 14px 25px;
-      }
-      a:hover {
-        background-color: DarkSlateBlue;
-      }
-      table,
-      fieldset {
+      table {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background: #eef1f4;
         border-radius: 3px;
         padding: 30px;
         margin-top: 10px;
-        width: 350px;
-      }
-      fieldset {
-        max-width: 375px;
-        padding: 15px;
-        border: none;
-        padding: 20px;
-      }
-      fieldset div {
-        text-align: left;
-        margin-top: 15px;
-      }
-      button {
-        background-color: DarkSlateBlue;
-        color: #fcfcff;
-        border-radius: 3px;
-        text-align: center;
-        padding: 10px;
-        margin-top: 20px;
-      }
-      label {
-        font-size: 18px;
-        margin-top: 25px;
-        padding-left: 30px;
-        padding-right: 5px;
-      }
-      input {
-        font-size: 18px;
-        border: 0;
-        border-bottom: 1px solid indigo;
-        background: transparent;
+        width: 400px;
       }
     </style>
     <h3>User List Component</h3>
@@ -89,16 +42,6 @@
   <script type="module">
     class UserList extends Polymer.Element {
       static get is() { return 'user-list'; }
-
-      static get properties() {
-          return {
-              id: Number,
-              firstName: String,
-              lastName: String,
-              phoneNumber: Number,
-              email: String
-          };
-      }
     }
     customElements.define(UserList.is, UserList);
     export default UserList;

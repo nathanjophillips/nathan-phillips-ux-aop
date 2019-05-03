@@ -3,41 +3,13 @@
 <dom-module id="user-profile">
   <template>
     <style>
-      ul {
-        display: inline-flex;
-        white-space: nowrap;
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-      }
-      a {
-        display: list-item;
-        text-decoration: none;
-        background-color: indigo;
-        color: #fcfcff;
-        padding: 14px 25px;
-      }
-      a:hover {
-        background-color: DarkSlateBlue;
-      }
-      table,
-      fieldset {
+      table {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background: #eef1f4;
         border-radius: 3px;
         padding: 30px;
         margin-top: 10px;
-        width: 350px;
-      }
-      fieldset {
-        max-width: 375px;
-        padding: 15px;
-        border: none;
-        padding: 20px;
-      }
-      fieldset div {
-        text-align: left;
-        margin-top: 15px;
+        width: 400px;
       }
       button {
         background-color: DarkSlateBlue;
@@ -47,24 +19,12 @@
         padding: 10px;
         margin-top: 20px;
       }
-      label {
-        font-size: 18px;
-        margin-top: 25px;
-        padding-left: 30px;
-        padding-right: 5px;
-      }
-      input {
-        font-size: 18px;
-        border: 0;
-        border-bottom: 1px solid indigo;
-        background: transparent;
-      }
       .expand {
-    display: table-row;
-}
-.collapse {
-    display: none;
-  }
+        display: table-row;
+      }
+      .collapse {
+        display: none;
+      }
     </style>
     <h3>User Profile Component</h3>
     <table>
@@ -98,6 +58,7 @@
         collapses.forEach(dataElement => dataElement.classList.toggle('collapse'));
         button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
       };
+
     class UserProfile extends Polymer.Element {
       static get is() { return 'user-profile'; }
 
