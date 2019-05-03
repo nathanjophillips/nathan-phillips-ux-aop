@@ -1,10 +1,6 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
-<link rel="import" href="./user-profile.html">
-<link rel="import" href="./create-user.html">
-<link rel="import" href="./edit-user.html">
-<link rel="import" href="./user-list.html">
 
-<dom-module id="intern-app">
+<dom-module id="user-profile">
   <template>
     <style>
       ul {
@@ -14,15 +10,14 @@
         margin: 0;
         padding: 0;
       }
-      h1 {
+      a {
         display: list-item;
         text-decoration: none;
         background-color: indigo;
         color: #fcfcff;
         padding: 14px 25px;
-        margin: 0px;
       }
-      h1:hover {
+      a:hover {
         background-color: DarkSlateBlue;
       }
       table,
@@ -64,44 +59,59 @@
         border-bottom: 1px solid indigo;
         background: transparent;
       }
+      .expand {
+    display: table-row;
+}
+.collapse {
+    display: none;
+  }
     </style>
-    <header>
-      <h1>Intern App</h1>
-    </header>
-    <user-profile 
-      id="[[user.id]]" 
-      first-name="[[user.firstName]]" 
-      last-name="[[user.lastName]]"
-      phone-number="[[user.phoneNumber]]" 
-      email="[[user.email]]">
-    </user-profile>
-    <create-user></create-user>
-    <edit-user></edit-user>
-    <user-list></user-list>
+    <h3>User Profile Component</h3>
+    <table>
+      <tr>
+        <td>ID:</td>
+        <td>[[id]]</td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td>[[firstName]] [[lastName]]</td>
+      </tr>
+      <tr class="expand">
+        <td>Phone:</td>
+        <td>[[phoneNumber]]</td>
+      </tr>
+      <tr class="expand">
+        <td>Email:</td>
+        <td>[[email]]</td>
+      </tr>
+      <tr>
+        <td>
+          <button onclick="cardExpandCollapse(this)">Collapse</button>
+        </td>
+      </tr>
+    </table>
   </template>
   <script type="module">
-     
-    class InternApp extends Polymer.Element {
-        static get is() { return 'intern-app'; }
+    'use strict';
+      window.cardExpandCollapse = button => {
+        const collapses = button.parentNode.parentNode.parentNode.querySelectorAll('.expand');
+        collapses.forEach(dataElement => dataElement.classList.toggle('collapse'));
+        button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
+      };
+    class UserProfile extends Polymer.Element {
+      static get is() { return 'user-profile'; }
 
-        static get properties() {
-          return {
-            user: {
-              type: Object,
-              value: () => {
-                return {
-                  id: "001",
-                  firstName: "Nicolas",
-                  lastName: "Cage",
-                  phoneNumber: 8675309,
-                  email: "nick@nickcage.com"
-                }
-              },
-            },
-          };
-        }
+      static get properties() {
+        return {
+          id: String,
+          firstName: String,
+          lastName: String,
+          phoneNumber: Number,
+          email: String
+        };
       }
-    customElements.define(InternApp.is, InternApp);
-    export default InternApp;
+    }
+    customElements.define(UserProfile.is, UserProfile);
+    export default UserProfile;
   </script>
 </dom-module>

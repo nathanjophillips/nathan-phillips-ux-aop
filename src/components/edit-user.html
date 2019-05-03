@@ -1,10 +1,6 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
-<link rel="import" href="./user-profile.html">
-<link rel="import" href="./create-user.html">
-<link rel="import" href="./edit-user.html">
-<link rel="import" href="./user-list.html">
 
-<dom-module id="intern-app">
+<dom-module id="edit-user">
   <template>
     <style>
       ul {
@@ -14,15 +10,14 @@
         margin: 0;
         padding: 0;
       }
-      h1 {
+      a {
         display: list-item;
         text-decoration: none;
         background-color: indigo;
         color: #fcfcff;
         padding: 14px 25px;
-        margin: 0px;
       }
-      h1:hover {
+      a:hover {
         background-color: DarkSlateBlue;
       }
       table,
@@ -64,44 +59,51 @@
         border-bottom: 1px solid indigo;
         background: transparent;
       }
+      .expand {
+        display: table-row;
+      }
+      .collapse {
+        display: none;
+      }
     </style>
-    <header>
-      <h1>Intern App</h1>
-    </header>
-    <user-profile 
-      id="[[user.id]]" 
-      first-name="[[user.firstName]]" 
-      last-name="[[user.lastName]]"
-      phone-number="[[user.phoneNumber]]" 
-      email="[[user.email]]">
-    </user-profile>
-    <create-user></create-user>
-    <edit-user></edit-user>
-    <user-list></user-list>
+    <h3>Edit User Component</h3>
+    <form>
+      <fieldset>
+        <div>
+          <label for="firstName">First name:</label>
+          <input type="text" name="firstName" id="firstName">
+        </div>
+        <div>
+          <label for="lastName">Last name:</label>
+          <input type="text" name="lastName" id="lastName">
+        </div>
+        <div>
+          <label for="phone">Phone:</label>
+          <input type="text" name="phone" id="phone">
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="text" name="email" id="email">
+        </div>
+        <button type="submit">Save Edit</button>
+      </fieldset>
+    </form>
   </template>
   <script type="module">
-     
-    class InternApp extends Polymer.Element {
-        static get is() { return 'intern-app'; }
+    class EditUser extends Polymer.Element {
+      static get is() { return 'edit-user'; }
 
-        static get properties() {
+      static get properties() {
           return {
-            user: {
-              type: Object,
-              value: () => {
-                return {
-                  id: "001",
-                  firstName: "Nicolas",
-                  lastName: "Cage",
-                  phoneNumber: 8675309,
-                  email: "nick@nickcage.com"
-                }
-              },
-            },
+              id: Number,
+              firstName: String,
+              lastName: String,
+              phoneNumber: Number,
+              email: String
           };
-        }
       }
-    customElements.define(InternApp.is, InternApp);
-    export default InternApp;
+    }
+    customElements.define(EditUser.is, EditUser);
+    export default EditUser;
   </script>
 </dom-module>
