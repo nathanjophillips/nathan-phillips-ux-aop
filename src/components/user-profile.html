@@ -49,7 +49,7 @@
     </table>
   </template>
   <script type="module">
-  'use strict';
+    'use strict';
     class UserProfile extends Polymer.Element {
       static get is() { return 'user-profile'; }
 
@@ -62,18 +62,18 @@
           email: String,
           isExpanded: {
             type: Boolean,
-            value: true 
+            value: true
           }
         };
       }
       cardExpandCollapse(event) {
         this.isExpanded = !this.isExpanded;
-      };
-      buttonText(isExpanded){
+      }
+      buttonText(isExpanded) {
         return isExpanded ? `Collapse` : `Expand`;
       }
     }
     customElements.define(UserProfile.is, UserProfile);
     export default UserProfile;
   </script>
-</dom-module>
+    </dom-module>
