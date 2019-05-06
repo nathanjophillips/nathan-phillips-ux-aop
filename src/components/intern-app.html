@@ -1,8 +1,8 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="./user-profile.html">
-<link rel="import" href="./create-user.html">
-<link rel="import" href="./edit-user.html">
-<link rel="import" href="./user-list.html">
+<!-- <link rel="import" href="./create-user.html"> -->
+<!-- <link rel="import" href="./edit-user.html"> -->
+<!-- <link rel="import" href="./user-list.html"> -->
 
 <dom-module id="intern-app">
   <template>
@@ -27,9 +27,6 @@
       phone-number="[[user.phoneNumber]]" 
       email="[[user.email]]">
     </user-profile>
-    <create-user></create-user>
-    <edit-user></edit-user>
-    <user-list></user-list>
   </template>
   <script type="module">
     class InternApp extends Polymer.Element {

@@ -1,4 +1,5 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
+<link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
 
 <dom-module id="user-profile">
   <template>
@@ -19,12 +20,6 @@
         padding: 10px;
         margin-top: 20px;
       }
-      .expand {
-        display: table-row;
-      }
-      .collapse {
-        display: none;
-      }
     </style>
     <h3>User Profile Component</h3>
     <table>
@@ -36,29 +31,25 @@
         <td>Name:</td>
         <td>[[firstName]] [[lastName]]</td>
       </tr>
-      <tr class="expand">
-        <td>Phone:</td>
-        <td>[[phoneNumber]]</td>
-      </tr>
-      <tr class="expand">
-        <td>Email:</td>
-        <td>[[email]]</td>
-      </tr>
+      <template is="dom-if" if="[[isExpanded]]">
+        <tr>
+          <td>Phone:</td>
+          <td>[[phoneNumber]]</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>[[email]]</td>
+        </tr>
+      </template>
       <tr>
         <td>
-          <button onclick="cardExpandCollapse(this)">Collapse</button>
+          <button on-click="cardExpandCollapse">[[buttonText(isExpanded)]]</button>
         </td>
       </tr>
     </table>
   </template>
   <script type="module">
-    'use strict';
-      window.cardExpandCollapse = button => {
-        const collapses = button.parentNode.parentNode.parentNode.querySelectorAll('.expand');
-        collapses.forEach(dataElement => dataElement.classList.toggle('collapse'));
-        button.textContent = button.textContent === 'Collapse' ? 'Expand' : 'Collapse';
-      };
-
+  'use strict';
     class UserProfile extends Polymer.Element {
       static get is() { return 'user-profile'; }
 
@@ -68,8 +59,18 @@
           firstName: String,
           lastName: String,
           phoneNumber: Number,
-          email: String
+          email: String,
+          isExpanded: {
+            type: Boolean,
+            value: true 
+          }
         };
+      }
+      cardExpandCollapse(event) {
+        this.isExpanded = !this.isExpanded;
+      };
+      buttonText(isExpanded){
+        return isExpanded ? `Collapse` : `Expand`;
       }
     }
     customElements.define(UserProfile.is, UserProfile);
