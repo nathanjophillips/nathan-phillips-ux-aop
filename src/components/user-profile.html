@@ -1,0 +1,81 @@
+<link rel="import" href="~@banno/polymer/polymer-element.html">
+<link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
+
+<dom-module id="user-profile">
+  <template>
+    <style>
+      table {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background: #eef1f4;
+        border-radius: 3px;
+        padding: 30px;
+        margin-top: 10px;
+        width: 400px;
+      }
+      button {
+        background-color: DarkSlateBlue;
+        color: #fcfcff;
+        border-radius: 3px;
+        text-align: center;
+        padding: 10px;
+        margin-top: 20px;
+      }
+    </style>
+    <h3>User Profile Component</h3>
+    <table>
+      <tr>
+        <td>ID:</td>
+        <td>[[id]]</td>
+      </tr>
+      <tr>
+        <td>Name:</td>
+        <td>[[firstName]] [[lastName]]</td>
+      </tr>
+      <template is="dom-if" if="[[isExpanded]]">
+        <tr>
+          <td>Phone:</td>
+          <td>[[phoneNumber]]</td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td>[[email]]</td>
+        </tr>
+      </template>
+      <tr>
+        <td>
+          <button on-click="cardExpandCollapse">[[buttonText(isExpanded)]]</button>
+        </td>
+      </tr>
+    </table>
+  </template>
+  <script type="module">
+    'use strict';
+    class UserProfile extends Polymer.Element {
+      static get is() { return 'user-profile'; }
+
+      static get properties() {
+        return {
+          id: String,
+          firstName: String,
+          lastName: String,
+          phoneNumber: Number,
+          email: String,
+          isExpanded: {
+            type: Boolean,
+            value: true
+          }
+        };
+      }
+      
+      cardExpandCollapse(event) {
+        this.isExpanded = !this.isExpanded;
+      }
+
+      buttonText(isExpanded) {
+        return isExpanded ? `Collapse` : `Expand`;
+      }
+    }
+    customElements.define(UserProfile.is, UserProfile);
+    export default UserProfile;
+  </script>
+</dom-module>
