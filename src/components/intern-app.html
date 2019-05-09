@@ -1,4 +1,5 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
+<link rel="import" href="~@banno/polymer/lib/elements/dom-repeat.html">
 <!-- <link rel="import" href="./create-user.html"> -->
 <!-- <link rel="import" href="./edit-user.html"> -->
 <link rel="import" href="./user-list.html">
@@ -19,7 +20,7 @@
     <header>
       <h1>Intern App</h1>
     </header>
-    <user-list></user-list>
+    <user-list user-profiles="[[userProfiles]]"></user-list>
   </template>
   <script type="module">
     'use strict'
@@ -42,7 +43,7 @@
                 { id: "008", firstName: 'Tony', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
                 { id: "009", firstName: 'Ryan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
                 { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
-              ];
+            ];
             }
           }
         }
