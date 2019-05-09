@@ -1,7 +1,4 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
-<link rel="import" href="~@banno/polymer/lib/elements/dom-repeat.html">
-<!-- <link rel="import" href="./create-user.html"> -->
-<!-- <link rel="import" href="./edit-user.html"> -->
 <link rel="import" href="./user-list.html">
 
 <dom-module id="intern-app">
@@ -31,7 +28,7 @@
         return {
           userProfiles: {
             type: Array,
-            value() {
+            value: () => {
               return [
                 { id: "001", firstName: 'Nick', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
                 { id: "002", firstName: 'Jack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
