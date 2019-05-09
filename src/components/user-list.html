@@ -1,47 +1,33 @@
-<link rel="import" href="~@banno/polymer/polymer-element.html">
+<link rel="import" href="~@banno/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="./user-profile.html">
 
 <dom-module id="user-list">
   <template>
     <style>
-      table {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background: #eef1f4;
-        border-radius: 3px;
-        padding: 30px;
-        margin-top: 10px;
-        width: 400px;
-      }
     </style>
     <h3>User List Component</h3>
-    <table>
-      <tr class="card-name">
-        <td>John Smith</td>
-      </tr>
-      <tr class="id">
-        <td>ID: #000001</td>
-      </tr>
-    </table>
-    <table>
-      <tr class="card-name">
-        <td>Jack Smith</td>
-      </tr>
-      <tr class="id">
-        <td>ID: #000002</td>
-      </tr>
-    </table>
-    <table>
-      <tr class="card-name">
-        <td>Jordan Smith</td>
-      </tr>
-      <tr class="id">
-        <td>ID: #000003</td>
-      </tr>
-    </table>
+    <template is="dom-repeat" items="[[userProfiles]]">
+      <user-profile 
+        id="[[item.id]]" 
+        first-name="[[item.firstName]]" 
+        last-name="[[item.lastName]]"
+        phone-number="[[item.phoneNumber]]" 
+        email="[[item.email]]">
+      </user-profile>
+    </template>
   </template>
   <script type="module">
+    'use strict'
     class UserList extends Polymer.Element {
       static get is() { return 'user-list'; }
+
+      static get properties() {
+        return {
+          userProfiles: {
+            type: Array,
+          }
+        }
+      }
     }
     customElements.define(UserList.is, UserList);
     export default UserList;

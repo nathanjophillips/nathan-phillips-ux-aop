@@ -1,8 +1,5 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
-<link rel="import" href="./user-profile.html">
-<!-- <link rel="import" href="./create-user.html"> -->
-<!-- <link rel="import" href="./edit-user.html"> -->
-<!-- <link rel="import" href="./user-list.html"> -->
+<link rel="import" href="./user-list.html">
 
 <dom-module id="intern-app">
   <template>
@@ -20,33 +17,33 @@
     <header>
       <h1>Intern App</h1>
     </header>
-    <user-profile 
-      id="[[user.id]]" 
-      first-name="[[user.firstName]]" 
-      last-name="[[user.lastName]]"
-      phone-number="[[user.phoneNumber]]" 
-      email="[[user.email]]">
-    </user-profile>
+    <user-list user-profiles="[[userProfiles]]"></user-list>
   </template>
   <script type="module">
+    'use strict'
     class InternApp extends Polymer.Element {
       static get is() { return 'intern-app'; }
 
       static get properties() {
         return {
-          user: {
-            type: Object,
+          userProfiles: {
+            type: Array,
             value: () => {
-              return {
-                id: "001",
-                firstName: "Nicolas",
-                lastName: "Cage",
-                phoneNumber: 8675309,
-                email: "nick@nickcage.com"
-              }
-            },
-          },
-        };
+              return [
+                { id: "001", firstName: 'Nick', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "002", firstName: 'Jack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "003", firstName: 'Betty', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "004", firstName: 'Jordan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "005", firstName: 'Brian', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "006", firstName: 'Gabby', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "007", firstName: 'John', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "008", firstName: 'Tony', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "009", firstName: 'Ryan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+                { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
+            ];
+            }
+          }
+        }
       }
     }
     customElements.define(InternApp.is, InternApp);
