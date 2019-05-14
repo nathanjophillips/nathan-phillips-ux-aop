@@ -1,4 +1,5 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
+<link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
 
 <dom-module id="edit-user">
   <template>
@@ -37,31 +38,50 @@
       }
     </style>
     <h3>Edit User Component</h3>
-    <form>
-      <fieldset>
-        <div>
-          <label for="firstName">First name:</label>
-          <input type="text" name="firstName" id="firstName">
-        </div>
-        <div>
-          <label for="lastName">Last name:</label>
-          <input type="text" name="lastName" id="lastName">
-        </div>
-        <div>
-          <label for="phone">Phone:</label>
-          <input type="text" name="phone" id="phone">
-        </div>
-        <div>
-          <label for="email">Email:</label>
-          <input type="text" name="email" id="email">
-        </div>
-        <button type="submit">Save Edit</button>
-      </fieldset>
-    </form>
+    <template is="dom-if" if="[[editSelected]]">
+      <form>
+        <fieldset>
+          <div>
+            <label for="firstName">First name:</label>
+            <input type="text" name="firstName" id="firstName">
+          </div>
+          <div>
+            <label for="lastName">Last name:</label>
+            <input type="text" name="lastName" id="lastName">
+          </div>
+          <div>
+            <label for="phone">Phone:</label>
+            <input type="text" name="phone" id="phone">
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email">
+          </div>
+          <button type="submit" on-click="editUserProfile">[[editButtonText(editSelected)]]</button>
+        </fieldset>
+      </form>
+    </template>
   </template>
   <script type="module">
     class EditUser extends Polymer.Element {
       static get is() { return 'edit-user'; }
+
+      static get properties() {
+        return {
+          editSelected: {
+            type: Boolean,
+            value: true
+          }
+        };
+      }
+
+      editUserProfile(event) {
+        this.editSelected = !this.editSelected;
+      }
+
+      editButtonText(editSelected) {
+        return editSelected ? `Edit` : `Save`;
+      }
     }
     customElements.define(EditUser.is, EditUser);
     export default EditUser;
