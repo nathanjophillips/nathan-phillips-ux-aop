@@ -1,35 +1,31 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
+<link rel="import" href="./user-profile.html">
 
 <dom-module id="edit-user">
   <template>
     <style>
-      fieldset {
+      table {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background: #eef1f4;
-        border: none;
         border-radius: 3px;
+        padding: 30px;
         margin-top: 10px;
-        width: 375px;
-      }
-      fieldset div {
-        text-align: left;
-        margin-top: 15px;
+        width: 400px;
       }
       button {
         background-color: DarkSlateBlue;
         color: #fcfcff;
         border-radius: 3px;
         text-align: center;
-        padding: 10px;
+        padding: 12px;
         margin-top: 20px;
+        font-size: 12px;
       }
-      label {
-        font-size: 18px;
+       label {
         margin-top: 25px;
-        padding-left: 30px;
         padding-right: 5px;
-      }
+      } 
       input {
         font-size: 18px;
         border: 0;
@@ -39,27 +35,50 @@
     </style>
     <h3>Edit User Component</h3>
     <template is="dom-if" if="[[editSelected]]">
-      <form>
-        <fieldset>
-          <div>
-            <label for="firstName">First name:</label>
-            <input type="text" name="firstName" id="firstName">
-          </div>
-          <div>
-            <label for="lastName">Last name:</label>
-            <input type="text" name="lastName" id="lastName">
-          </div>
-          <div>
-            <label for="phone">Phone:</label>
-            <input type="text" name="phone" id="phone">
-          </div>
-          <div>
-            <label for="email">Email:</label>
-            <input type="text" name="email" id="email">
-          </div>
-          <button type="submit" on-click="editUserProfile">[[editButtonText(editSelected)]]</button>
-        </fieldset>
-      </form>
+      <table>
+        <tr>
+          <td>ID :</td>
+          <td>[[user.id]]</td>
+        </tr>
+        <tr>
+          <td><label for="name">Name :</label></td>
+          <td>[[user.firstName]] [[user.lastName]]</td>
+        </tr>
+        <tr>
+          <td><label for="phone">Phone :</label></td>
+          <td>[[user.phoneNumber]]</td>
+        </tr>
+        <tr>
+          <td><label for="email">Email :</label></td>
+          <td>[[user.email]]</td>
+        </tr>
+        <tr>
+          <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+        </tr>
+      </table>
+    </template>
+    <template is="dom-if" if="[[!editSelected]]">
+      <table>
+        <tr>
+          <td><label for="firstName">First name :</label></td>
+          <td><input type="text" name="firstName" id="firstName" value="{{user.firstName}}" on-input="updateFirstName"></td>
+        </tr>
+        <tr>
+          <td><label for="lastName">Last name :</label></td>
+          <td><input type="text" name="lastName" id="lastName" value="{{user.lastName}}" on-input="updateLastName"></td>
+        </tr>
+        <tr>
+          <td><label for="phone">Phone :</label></td>
+          <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber}}" on-input="updatePhoneNumber"></td>
+        </tr>
+        <tr>
+          <td><label for="email">Email :</label></td>
+          <td><input type="text" name="email" id="email" value="{{user.email}}" on-input="updateEmail"></td>
+        </tr>
+        <tr>
+          <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+        </tr>
+      </table>
     </template>
   </template>
   <script type="module">
@@ -71,16 +90,36 @@
           editSelected: {
             type: Boolean,
             value: true
+          },
+          user: {
+            type: Object,
           }
         };
       }
 
       editUserProfile(event) {
+        // event.preventDefault();
         this.editSelected = !this.editSelected;
       }
 
       editButtonText(editSelected) {
         return editSelected ? `Edit` : `Save`;
+      }
+
+      updateFirstName(event) {
+        this.set('user.firstName', event.target.value);
+      }
+
+      updateLastName(event) {
+        this.set('user.lastName', event.target.value);
+      }
+
+      updatePhoneNumber(event) {
+        this.set('user.phoneNumber', event.target.value);
+      }
+
+      updateEmail(event) {
+        this.set('user.email', event.target.value);
       }
     }
     customElements.define(EditUser.is, EditUser);
