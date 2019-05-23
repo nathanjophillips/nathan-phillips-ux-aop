@@ -62,12 +62,25 @@
       }
 
       newUser(event) {
-        const newUserProfile = event.detail;
-
-        this.push("userProfiles", newUserProfile);
+        var newUserProfile = Object.assign({},event.detail);
+        newUserProfile.id = this.genId();
+        this.pushToArray(this.userProfiles, newUserProfile);
       }
 
+      pushToArray(userProfiles, newUserProfile) {
+        var existingIds = userProfiles.map((newUserProfile) => newUserProfile.id);
+        if (!existingIds.includes(newUserProfile.id)) {
+          this.push('userProfiles', newUserProfile);
+        }
+        else {
+          newUserProfile.id = this.genId();
+          this.push('userProfiles', newUserProfile);
+        };
+      };
 
+      genId() {
+        return '_' + Math.random().toString(8).substr(2, 9);
+      }
     }
     customElements.define(InternApp.is, InternApp);
     export default InternApp;
