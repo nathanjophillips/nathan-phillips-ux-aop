@@ -81,19 +81,29 @@
           },
           user: {
             type: Object,
+            value: function() {
+              return {
+                id: "000",
+                firstName: 'Nick',
+                lastName: 'Cage',
+                phoneNumber: 6413223232,
+                email: "nick@nickcage.com" 
+              };
+            }
           }
         };
       }
 
       newProfile(event) {
-        this.addUserSelected = !this.addUserSelected;
         this.dispatchEvent(new CustomEvent("newUser", {
           bubbles: true,
           composed: true,
-          detail: this.userProfiles[0]
+          detail: this.user
         }));
+        this.addUserSelected = !this.addUserSelected;
         console.log("something");
       }
+
       createNewUserProfile(event) {
         this.addUserSelected = !this.addUserSelected;
       }

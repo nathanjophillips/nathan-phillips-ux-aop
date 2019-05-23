@@ -46,21 +46,28 @@
           }
         }
       }
-
-      connectedCalllback() {
-        super.connectedCalllback();
-        this.addEventListener("newUser", this.newUser);   
+      constructor() {
+        super();
+        this.boundNewUser = this.newUser.bind(this);
       }
 
-      disconnectedCalllback() {
-        super.disconnectedCalllback();
-        this.removeEventListener("newUser", this.newUser); 
+      connectedCallback() {
+        super.connectedCallback();
+        window.addEventListener("newUser", this.boundNewUser);   
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        window.removeEventListener("newUser", this.boundNewUser); 
       }
 
       newUser(event) {
-        var newUserProfile = event.detail;
-        console.log(newUserProfile);
+        const newUserProfile = event.detail;
+
+        this.push("userProfiles", newUserProfile);
       }
+
+
     }
     customElements.define(InternApp.is, InternApp);
     export default InternApp;
