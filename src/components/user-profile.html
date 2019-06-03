@@ -12,6 +12,7 @@
         margin-top: 10px;
         width: 400px;
       }
+  
       button {
         background-color: DarkSlateBlue;
         color: #fcfcff;
@@ -21,66 +22,104 @@
         margin-top: 20px;
         font-size: 12px;
       }
+  
       label {
         margin-top: 25px;
         padding-right: 5px;
-      } 
+      }
+
       input {
         font-size: 18px;
         border: 0;
         border-bottom: 1px solid indigo;
         background: transparent;
       }
+      
+      .add-button {
+        background-color: #fca902;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px;
+        margin-top: 0px;
+        font-size: 18px;
+        padding-right: 40px;
+        padding-left: 40px;
+      }
     </style>
-  <template is="dom-if" if="[[editSelected]]">
-    <table>
-      <tr>
-        <td>ID:</td>
-        <td>[[id]]</td>
-      </tr>
-      <tr>
-        <td>Name:</td>
-        <td>[[firstName]] [[lastName]]</td>
-      </tr>
-      <template is="dom-if" if="[[isExpanded]]">
+    <template is="dom-if" if="[[!addUserSelected]]">
+      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
+    </template>
+    <template is="dom-if" if="[[addUserSelected]]">
+      <table>
         <tr>
-          <td>Phone:</td>
-          <td>[[phoneNumber]]</td>
+          <td><label for="firstName">First name :</label></td>
+          <td><input type="text" name="firstName" id="firstName" value="[[user.firstName]]" on-input="updateFirstName"></td>
         </tr>
         <tr>
-          <td>Email:</td>
-          <td>[[email]]</td>
+          <td><label for="lastName">Last name :</label></td>
+          <td><input type="text" name="lastName" id="lastName" value="[[user.lastName]]" on-input="updateLastName"></td>
         </tr>
-      </template>
-      <tr>
-        <td><button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button></td>
-        <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
-      </tr>
-    </table>
-  </template>
-  <template is="dom-if" if="[[!editSelected]]">
-    <table>
-      <tr>
-        <td><label for="firstName">First name :</label></td>
-        <td><input type="text" name="firstName" id="firstName" value="{{firstName}}" on-input="updateFirstName"></td>
-      </tr>
-      <tr>
-        <td><label for="lastName">Last name :</label></td>
-        <td><input type="text" name="lastName" id="lastName" value="{{lastName}}" on-input="updateLastName"></td>
-      </tr>
-      <tr>
-        <td><label for="phone">Phone :</label></td>
-        <td><input type="text" name="phone" id="phone" value="{{phoneNumber}}" on-input="updatePhoneNumber"></td>
-      </tr>
-      <tr>
-        <td><label for="email">Email :</label></td>
-        <td><input type="text" name="email" id="email" value="{{email}}" on-input="updateEmail"></td>
-      </tr>
-      <tr>
-        <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
-      </tr>
-    </table>
-  </template>
+        <tr>
+          <td><label for="phone">Phone :</label></td>
+          <td><input type="text" name="phone" id="phone" value="[[user.phoneNumber]]" on-input="updatePhoneNumber"></td>
+        </tr>
+        <tr>
+          <td><label for="email">Email :</label></td>
+          <td><input type="text" name="email" id="email" value="[[user.email]]" on-input="updateEmail"></td>
+        </tr>
+        <tr>
+          <td><button type="button" on-click="newProfile">[[changeButtonText(addUserSelected)]]</button></td>
+        </tr>
+      </table>
+    </template>
+    <template is="dom-if" if="[[editSelected]]">
+      <table>
+        <tr>
+          <td>ID:</td>
+          <td>[[id]]</td>
+        </tr>
+        <tr>
+          <td>Name:</td>
+          <td>[[firstName]] [[lastName]]</td>
+        </tr>
+        <template is="dom-if" if="[[isExpanded]]">
+          <tr>
+            <td>Phone:</td>
+            <td>[[phoneNumber]]</td>
+          </tr>
+          <tr>
+            <td>Email:</td>
+            <td>[[email]]</td>
+          </tr>
+        </template>
+        <tr>
+          <td><button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button></td>
+          <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+        </tr>
+      </table>
+    </template>
+    <template is="dom-if" if="[[!editSelected]]">
+      <table>
+        <tr>
+          <td><label for="firstName">First name :</label></td>
+          <td><input type="text" name="firstName" id="firstName" value="{{firstName}}" on-input="updateFirstName"></td>
+        </tr>
+        <tr>
+          <td><label for="lastName">Last name :</label></td>
+          <td><input type="text" name="lastName" id="lastName" value="{{lastName}}" on-input="updateLastName"></td>
+        </tr>
+        <tr>
+          <td><label for="phone">Phone :</label></td>
+          <td><input type="text" name="phone" id="phone" value="{{phoneNumber}}" on-input="updatePhoneNumber"></td>
+        </tr>
+        <tr>
+          <td><label for="email">Email :</label></td>
+          <td><input type="text" name="email" id="email" value="{{email}}" on-input="updateEmail"></td>
+        </tr>
+        <tr>
+          <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+        </tr>
+      </table>
+    </template>
 </template>
   <script type="module">
     'use strict';
@@ -101,6 +140,22 @@
           editSelected: {
             type: Boolean,
             value: true
+          },
+          addUserSelected: {
+            type: Boolean,
+            value: false
+          },
+          user: {
+            type: Object,
+            value: function() {
+              return {
+                id: "0",
+                firstName: '',
+                lastName: '',
+                phoneNumber: 0,
+                email: ''
+              };
+            }
           }
         };
       }
@@ -113,12 +168,20 @@
         this.editSelected = !this.editSelected;
       }
 
+      createNewUserProfile(event) {
+        this.addUserSelected = !this.addUserSelected;
+      }
+
       collapseButtonText(isExpanded) {
         return isExpanded ? `Collapse` : `Expand`;
       }
 
       editButtonText(editSelected) {
         return editSelected ? `Edit` : `Save`;
+      }
+
+      changeButtonText(addUserSelected) {
+        return addUserSelected ? `Save` : `Create User` ;
       }
 
       updateFirstName(event) {
@@ -135,6 +198,31 @@
 
       updateEmail(event) {
         this.set('email', event.target.value);
+      }
+
+      newProfile(event) {
+        this.dispatchEvent(new CustomEvent("newUser", {
+          bubbles: true,
+          composed: true,
+          detail: this.user
+        }));
+        this.addUserSelected = !this.addUserSelected;
+      }
+
+      updateFirstName(event) {
+        this.set('user.firstName', event.target.value);
+      }
+
+      updateLastName(event) {
+        this.set('user.lastName', event.target.value);
+      }
+
+      updatePhoneNumber(event) {
+        this.set('user.phoneNumber', event.target.value);
+      }
+
+      updateEmail(event) {
+        this.set('user.email', event.target.value);
       }
     }
     customElements.define(UserProfile.is, UserProfile);

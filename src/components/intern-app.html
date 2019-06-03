@@ -1,6 +1,5 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="./user-list.html">
-<link rel="import" href="./create-user.html">
 
 <dom-module id="intern-app">
   <template>
@@ -15,7 +14,6 @@
     <header>
       <h1>Intern App</h1>
     </header>
-    <create-user></create-user>
     <user-list user="[[userProfiles.0]]" user-profiles="[[userProfiles]]"></user-list>
   </template>
   <script type="module">
