@@ -45,9 +45,6 @@
         padding-left: 40px;
       }
     </style>
-    <template is="dom-if" if="[[!addUserSelected]]">
-      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
-    </template>
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
         <tr>
