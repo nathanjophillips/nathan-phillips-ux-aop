@@ -50,10 +50,10 @@
     <header>
       <h1>Intern App</h1>
     </header>
-    <template is="dom-if" if="[[!addUserSelected]]">
-      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
+    <template is="dom-if" if="[[addUserSelected]]">
+      <button class="add-button" type="button" on-click="createNewUserProfile">Create User[[changeButtonText(addUserSelected)]]</button>
     </template>
-    <user-list user="[[userProfiles.0]]" user-profiles="[[userProfiles]]"></user-list>
+    <user-list user-profiles="[[userProfiles]]"></user-list>
   </template>
   <script type="module">
     'use strict'
@@ -78,10 +78,6 @@
                 { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
               ];
             }
-          },
-          addUserSelected: {
-            type: Boolean,
-            value: false
           }
         }
       }

@@ -11,9 +11,7 @@
         padding: 30px;
         margin-top: 10px;
         width: 400px;
-     
       }
-  
       button {
         background-color: DarkSlateBlue;
         color: #fcfcff;
@@ -23,19 +21,16 @@
         margin-top: 20px;
         font-size: 12px;
       }
-  
       label {
         margin-top: 25px;
         padding-right: 5px;
       }
-
       input {
         font-size: 18px;
         border: 0;
         border-bottom: 1px solid indigo;
         background: transparent;
-      }
-      
+      }  
       .add-button {
         background-color: #fca902;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -47,10 +42,10 @@
       }
       template {
         display: flex;
-    justify-content: center;
+        justify-content: center;
       }
     </style>
-    <template is="dom-if" if="[[addUserSelected]]">
+    <template is="dom-if" if="{{addUserSelected}}">
       <table>
         <tr>
           <td><label for="firstName">First name :</label></td>
