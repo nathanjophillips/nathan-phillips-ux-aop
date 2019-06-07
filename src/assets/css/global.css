@@ -19,9 +19,12 @@ html, body {
     font-family: "Poppins", sans-serif;
     text-align: -webkit-center;
     margin-top: 0px;
+    display: flex;
+    justify-content: center;    
 }
+
 ul {
-    display: inline-flex;
+    display: block;
     white-space: nowrap;
     list-style-type: none;
     margin: 0;
@@ -29,7 +32,7 @@ ul {
 }
 
 a {
-    display: list-item;
+    display: block;
     text-decoration: none;
     background-color: indigo;
     color: #fcfcff;
