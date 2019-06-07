@@ -19,6 +19,8 @@ html, body {
     font-family: "Poppins", sans-serif;
     text-align: -webkit-center;
     margin-top: 0px;
+    display: flex;
+    justify-content: center;
 }
 ul {
     display: inline-flex;
@@ -46,7 +48,7 @@ table, fieldset {
     border-radius: 3px;
     padding: 30px;
     margin-top: 10px;
-    width: 350px;
+    width: 400px;
 }
 fieldset {
     max-width: 375px;

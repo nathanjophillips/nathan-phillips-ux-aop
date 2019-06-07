@@ -1,6 +1,5 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="./user-list.html">
-<link rel="import" href="./edit-user.html">
 <link rel="import" href="./create-user.html">
 
 <dom-module id="intern-app">
@@ -17,7 +16,6 @@
       <h1>Intern App</h1>
     </header>
     <create-user></create-user>
-    <edit-user user="[[userProfiles.0]]"></edit-user>
     <user-list user-profiles="[[userProfiles]]"></user-list>
   </template>
   <script type="module">
@@ -62,7 +60,7 @@
       }
 
       newUser(event) {
-        var newUserProfile = Object.assign({},event.detail);
+        var newUserProfile = Object.assign({}, event.detail);
         newUserProfile.id = this.genId();
         this.pushToArray(this.userProfiles, newUserProfile);
       }
