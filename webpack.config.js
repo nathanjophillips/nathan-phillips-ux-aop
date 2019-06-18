@@ -32,7 +32,7 @@ module.exports = env => {
         },
         {
           test: /\.css$/,
-          use: 'css-loader'
+          use: 'css-loader',
         },
         {
           test: /\.(png|jpg|gif)$/,

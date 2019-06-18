@@ -45,79 +45,79 @@
         justify-content: center;
       }
     </style>
-    <template is="dom-if" if="{{addUserSelected}}">
+    <template is="dom-if" if="[[addUserSelected]]">
       <table>
         <tr>
           <td><label for="firstName">First name :</label></td>
-          <td><input type="text" name="firstName" id="firstName" value="[[user.firstName]]" on-input="updateFirstName"></td>
+          <td><input type="text" name="firstName" id="firstName" value="{{user.firstName}}" on-input="updateUserFirstName"></td>
         </tr>
         <tr>
           <td><label for="lastName">Last name :</label></td>
-          <td><input type="text" name="lastName" id="lastName" value="[[user.lastName]]" on-input="updateLastName"></td>
+          <td><input type="text" name="lastName" id="lastName" value="{{user.lastName}}" on-input="updateUserLastName"></td>
         </tr>
         <tr>
           <td><label for="phone">Phone :</label></td>
-          <td><input type="text" name="phone" id="phone" value="[[user.phoneNumber]]" on-input="updatePhoneNumber"></td>
+          <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber}}" on-input="updateUserPhoneNumber"></td>
         </tr>
         <tr>
           <td><label for="email">Email :</label></td>
-          <td><input type="text" name="email" id="email" value="[[user.email]]" on-input="updateEmail"></td>
+          <td><input type="text" name="email" id="email" value="{{user.email}}" on-input="updateUserEmail"></td>
         </tr>
         <tr>
           <td><button type="button" on-click="newProfile">[[changeButtonText(addUserSelected)]]</button></td>
         </tr>
       </table>
     </template>
+    <template is="dom-if" if="[[isPopulated]]">
+        <table>
+          <tr>
+            <td>ID:</td>
+            <td>[[id]]</td>
+          </tr>
+          <tr>
+            <td>Name:</td>
+            <td>[[firstName]] [[lastName]]</td>
+          </tr>
+          <template is="dom-if" if="[[isExpanded]]">
+            <tr>
+              <td>Phone:</td>
+              <td>[[phoneNumber]]</td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td>[[email]]</td>
+            </tr>
+          </template>
+          <tr>
+            <td><button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button></td>
+            <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+          </tr>
+        </table>
+    </template>
     <template is="dom-if" if="[[editSelected]]">
-      <table>
-        <tr>
-          <td>ID:</td>
-          <td>[[id]]</td>
-        </tr>
-        <tr>
-          <td>Name:</td>
-          <td>[[firstName]] [[lastName]]</td>
-        </tr>
-        <template is="dom-if" if="[[isExpanded]]">
+        <table>
           <tr>
-            <td>Phone:</td>
-            <td>[[phoneNumber]]</td>
+            <td><label for="firstName">First name :</label></td>
+            <td><input type="text" name="firstName" id="firstName" value="{{firstName}}" on-input="updateFirstName"></td>
           </tr>
           <tr>
-            <td>Email:</td>
-            <td>[[email]]</td>
+            <td><label for="lastName">Last name :</label></td>
+            <td><input type="text" name="lastName" id="lastName" value="{{lastName}}" on-input="updateLastName"></td>
           </tr>
-        </template>
-        <tr>
-          <td><button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button></td>
-          <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
-        </tr>
-      </table>
+          <tr>
+            <td><label for="phone">Phone :</label></td>
+            <td><input type="text" name="phone" id="phone" value="{{phoneNumber}}" on-input="updatePhoneNumber"></td>
+          </tr>
+          <tr>
+            <td><label for="email">Email :</label></td>
+            <td><input type="text" name="email" id="email" value="{{email}}" on-input="updateEmail"></td>
+          </tr>
+          <tr>
+            <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+          </tr>
+        </table>
     </template>
-    <template is="dom-if" if="[[!editSelected]]">
-      <table>
-        <tr>
-          <td><label for="firstName">First name :</label></td>
-          <td><input type="text" name="firstName" id="firstName" value="{{firstName}}" on-input="updateFirstName"></td>
-        </tr>
-        <tr>
-          <td><label for="lastName">Last name :</label></td>
-          <td><input type="text" name="lastName" id="lastName" value="{{lastName}}" on-input="updateLastName"></td>
-        </tr>
-        <tr>
-          <td><label for="phone">Phone :</label></td>
-          <td><input type="text" name="phone" id="phone" value="{{phoneNumber}}" on-input="updatePhoneNumber"></td>
-        </tr>
-        <tr>
-          <td><label for="email">Email :</label></td>
-          <td><input type="text" name="email" id="email" value="{{email}}" on-input="updateEmail"></td>
-        </tr>
-        <tr>
-          <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
-        </tr>
-      </table>
-    </template>
-</template>
+  </template>
   <script type="module">
     'use strict';
     class UserProfile extends Polymer.Element {
@@ -136,10 +136,6 @@
           },
           editSelected: {
             type: Boolean,
-            value: true
-          },
-          addUserSelected: {
-            type: Boolean,
             value: false
           },
           user: {
@@ -149,12 +145,26 @@
                 id: "0",
                 firstName: '',
                 lastName: '',
-                phoneNumber: 0,
+                phoneNumber: '',
                 email: ''
               };
             }
+          },
+          addUserSelected: {
+            type: Boolean,
+          },
+          isPopulated: {
+            type: Boolean,
           }
-        };
+        }
+      }
+
+      newProfile(event) {
+        this.dispatchEvent(new CustomEvent("newUser", {
+          bubbles: true,
+          composed: true,
+          detail: this.user
+        }));
       }
       
       cardExpandCollapse(event) {
@@ -163,10 +173,7 @@
 
       editUserProfile(event) {
         this.editSelected = !this.editSelected;
-      }
-
-      createNewUserProfile(event) {
-        this.addUserSelected = !this.addUserSelected;
+        this.isPopulated = !this.isPopulated;
       }
 
       collapseButtonText(isExpanded) {
@@ -174,11 +181,26 @@
       }
 
       editButtonText(editSelected) {
-        return editSelected ? `Edit` : `Save`;
+        return editSelected ? `Save` : `Edit`;
       }
 
       changeButtonText(addUserSelected) {
         return addUserSelected ? `Save` : `Create User` ;
+      }
+      updateUserFirstName(event) {
+        this.set('user.firstName', event.target.value);
+      }
+
+      updateUserLastName(event) {
+        this.set('user.lastName', event.target.value);
+      }
+
+      updateUserPhoneNumber(event) {
+        this.set('user.phoneNumber', event.target.value);
+      }
+
+      updateUserEmail(event) {
+        this.set('user.email', event.target.value);
       }
 
       updateFirstName(event) {
@@ -197,30 +219,6 @@
         this.set('email', event.target.value);
       }
 
-      newProfile(event) {
-        this.dispatchEvent(new CustomEvent("newUser", {
-          bubbles: true,
-          composed: true,
-          detail: this.user
-        }));
-        this.addUserSelected = !this.addUserSelected;
-      }
-
-      updateFirstName(event) {
-        this.set('user.firstName', event.target.value);
-      }
-
-      updateLastName(event) {
-        this.set('user.lastName', event.target.value);
-      }
-
-      updatePhoneNumber(event) {
-        this.set('user.phoneNumber', event.target.value);
-      }
-
-      updateEmail(event) {
-        this.set('user.email', event.target.value);
-      }
     }
     customElements.define(UserProfile.is, UserProfile);
     export default UserProfile;

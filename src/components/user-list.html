@@ -5,13 +5,19 @@
   <template>
     <style>
     </style>
+    <template is="dom-if" if="[[addUserSelected]]">
+      <user-profile 
+        add-user-selected="[[addUserSelected]]">
+      </user-profile>
+    </template>
     <template is="dom-repeat" items="[[userProfiles]]">
       <user-profile
         id="[[item.id]]"
         first-name="[[item.firstName]]"
         last-name="[[item.lastName]]"
         phone-number="[[item.phoneNumber]]"
-        email="[[item.email]]">
+        email="[[item.email]]"
+        is-populated>
       </user-profile>
     </template>
   </template>
@@ -24,6 +30,9 @@
         return {
           userProfiles: {
             type: Array,
+          },
+          addUserSelected: {
+            type: Boolean,
           }
         }
       }

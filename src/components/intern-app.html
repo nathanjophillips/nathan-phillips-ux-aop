@@ -50,10 +50,10 @@
     <header>
       <h1>Intern App</h1>
     </header>
-    <template is="dom-if" if="[[addUserSelected]]">
-      <button class="add-button" type="button" on-click="createNewUserProfile">Create User[[changeButtonText(addUserSelected)]]</button>
+    <template is="dom-if" if="[[!addUserSelected]]">
+      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
     </template>
-    <user-list user-profiles="[[userProfiles]]"></user-list>
+    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
   </template>
   <script type="module">
     'use strict'
@@ -78,6 +78,10 @@
                 { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
               ];
             }
+          },
+          addUserSelected: {
+            type: Boolean,
+            value: false
           }
         }
       }
@@ -101,6 +105,7 @@
         var newUserProfile = Object.assign({},event.detail);
         newUserProfile.id = this.genId();
         this.pushToArray(this.userProfiles, newUserProfile);
+        this.addUserSelected = false;
       }
 
       pushToArray(userProfiles, newUserProfile) {
@@ -115,7 +120,15 @@
       };
 
       genId() {
-        return '_' + Math.random().toString(8).substr(2, 9);
+        return '' + Math.random().toString(9).substr(2, 3);
+      }
+
+      createNewUserProfile(event) {
+        this.addUserSelected = !this.addUserSelected;
+      }
+
+      changeButtonText(addUserSelected) {
+        return addUserSelected ? `Save` : `Create User` ;
       }
     }
     customElements.define(InternApp.is, InternApp);
