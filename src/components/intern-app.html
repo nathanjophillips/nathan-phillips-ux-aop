@@ -102,7 +102,7 @@
       }
 
       newUser(event) {
-        var newUserProfile = Object.assign({},event.detail);
+        var newUserProfile = Object.assign({}, event.detail);
         newUserProfile.id = this.genId();
         this.pushToArray(this.userProfiles, newUserProfile);
         this.addUserSelected = false;
