@@ -137,7 +137,7 @@
             type: Object,
             value: function() {
               return {
-                id: "0",
+                id: '',
                 firstName: '',
                 lastName: '',
                 phoneNumber: '',
@@ -161,7 +161,7 @@
           detail: this.user
         }));
         this.user = {
-          id: "",
+          id: '',
           firstName: '',
           lastName: '',
           phoneNumber: '',
@@ -189,6 +189,7 @@
       changeButtonText(addUserSelected) {
         return addUserSelected ? `Save` : `Create User` ;
       }
+
       updateUserFirstName(event) {
         this.set('user.firstName', event.target.value);
       }
@@ -204,7 +205,6 @@
       updateUserEmail(event) {
         this.set('user.email', event.target.value);
       }
-
     }
     customElements.define(UserProfile.is, UserProfile);
     export default UserProfile;
