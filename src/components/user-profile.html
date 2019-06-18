@@ -72,20 +72,20 @@
         <table>
           <tr>
             <td>ID:</td>
-            <td>[[id]]</td>
+            <td>[[user.id]]</td>
           </tr>
           <tr>
             <td>Name:</td>
-            <td>[[firstName]] [[lastName]]</td>
+            <td>[[user.firstName]] [[user.lastName]]</td>
           </tr>
           <template is="dom-if" if="[[isExpanded]]">
             <tr>
               <td>Phone:</td>
-              <td>[[phoneNumber]]</td>
+              <td>[[user.phoneNumber]]</td>
             </tr>
             <tr>
               <td>Email:</td>
-              <td>[[email]]</td>
+              <td>[[user.email]]</td>
             </tr>
           </template>
           <tr>
@@ -98,19 +98,19 @@
         <table>
           <tr>
             <td><label for="firstName">First name :</label></td>
-            <td><input type="text" name="firstName" id="firstName" value="{{firstName}}" on-input="updateFirstName"></td>
+            <td><input type="text" name="firstName" id="firstName" value="{{user.firstName}}" on-input="updateUserFirstName"></td>
           </tr>
           <tr>
             <td><label for="lastName">Last name :</label></td>
-            <td><input type="text" name="lastName" id="lastName" value="{{lastName}}" on-input="updateLastName"></td>
+            <td><input type="text" name="lastName" id="lastName" value="{{user.lastName}}" on-input="updateUserLastName"></td>
           </tr>
           <tr>
             <td><label for="phone">Phone :</label></td>
-            <td><input type="text" name="phone" id="phone" value="{{phoneNumber}}" on-input="updatePhoneNumber"></td>
+            <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber}}" on-input="updateUserPhoneNumber"></td>
           </tr>
           <tr>
             <td><label for="email">Email :</label></td>
-            <td><input type="text" name="email" id="email" value="{{email}}" on-input="updateEmail"></td>
+            <td><input type="text" name="email" id="email" value="{{user.email}}" on-input="updateUserEmail"></td>
           </tr>
           <tr>
             <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
@@ -125,11 +125,6 @@
 
       static get properties() {
         return {
-          id: String,
-          firstName: String,
-          lastName: String,
-          phoneNumber: Number,
-          email: String,
           isExpanded: {
             type: Boolean,
             value: true
@@ -165,6 +160,13 @@
           composed: true,
           detail: this.user
         }));
+        this.user = {
+          id: "",
+          firstName: '',
+          lastName: '',
+          phoneNumber: '',
+          email: ''
+        };
       }
       
       cardExpandCollapse(event) {
@@ -201,22 +203,6 @@
 
       updateUserEmail(event) {
         this.set('user.email', event.target.value);
-      }
-
-      updateFirstName(event) {
-        this.set('firstName', event.target.value);
-      }
-
-      updateLastName(event) {
-        this.set('lastName', event.target.value);
-      }
-
-      updatePhoneNumber(event) {
-        this.set('phoneNumber', event.target.value);
-      }
-
-      updateEmail(event) {
-        this.set('email', event.target.value);
       }
 
     }
