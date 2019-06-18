@@ -1,0 +1,39 @@
+<link rel="import" href="~@banno/polymer/lib/elements/dom-repeat.html">
+<link rel="import" href="./user-profile.html">
+
+<dom-module id="user-list">
+  <template>
+    <style>
+    </style>
+    <template is="dom-if" if="[[addUserSelected]]">
+      <user-profile 
+        add-user-selected="[[addUserSelected]]">
+      </user-profile>
+    </template>
+    <template is="dom-repeat" items="[[userProfiles]]">
+      <user-profile
+        user="[[item]]"
+        is-populated>
+      </user-profile>
+    </template>
+  </template>
+  <script type="module">
+    'use strict'
+    class UserList extends Polymer.Element {
+      static get is() { return 'user-list'; }
+
+      static get properties() {
+        return {
+          userProfiles: {
+            type: Array,
+          },
+          addUserSelected: {
+            type: Boolean,
+          }
+        }
+      }
+    }
+    customElements.define(UserList.is, UserList);
+    export default UserList;
+  </script>
+</dom-module>
