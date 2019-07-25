@@ -65,18 +65,7 @@
          userProfiles: {
            type: Array,
            value: () => {
-             return [
-               { id: "001", firstName: 'Nick', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "002", firstName: 'Jack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "003", firstName: 'Betty', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "004", firstName: 'Jordan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "005", firstName: 'Brian', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "006", firstName: 'Gabby', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "007", firstName: 'John', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "008", firstName: 'Tony', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "009", firstName: 'Ryan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-               { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
-             ];
+             return localStorageApi.getUsers(); 
            }
          },
          addUserSelected: {
@@ -110,7 +99,7 @@
        var newUserProfile = Object.assign({},event.detail);
        newUserProfile.id = this.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
-      //  localStorageApi.createUser(newUserProfile);
+       localStorageApi.createUser(newUserProfile);
        this.addUserSelected = false;
      }
 

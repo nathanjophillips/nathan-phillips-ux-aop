@@ -7,14 +7,14 @@ class localStorageApi {
  }
  
   static createUser(newUser) {
-    const databaseEndpoints = { ALL_USERS: 'allStoredUsers' }
     var existingUsers = localStorageApi.getUsers();
-    localStorage.setItem(databaseEndpoints.ALL_USERS, JSON.stringify(existingUsers.push(newUser)));
+    existingUsers.push(newUser);
+    localStorage.setItem("allStoredUsers", JSON.stringify(existingUsers));
     console.log("createUser() new current existing users = ", existingUsers);
     return existingUsers;
   }
 
-  static getUser(id) {
+  static getUser(userId) {
     var existingUsers = localStorageApi.getUsers();
     var found = existingUsers.find(allStoredUsers => {
       return allStoredUsers.id === id;
@@ -27,8 +27,8 @@ class localStorageApi {
   }
  
   static updateUser(id) {
-      // var matchingUser = localStorageApi.getUser(id);
-      // console.log(matchingUser);
+    // var matchingUser = localStorageApi.getUser(id);
+    // console.log(matchingUser);
   }
 
   static deleteUser(id) {
@@ -43,25 +43,13 @@ class localStorageApi {
     consol.log("deleteUsers() all users deleted = ", localStorageApi.getUsers());
   }
 
+  // static deleteUsers() {
+  //     localStorage.clear();
+  // }
 
+  // static validateUser(user) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // }
 }
 
 export default localStorageApi;
@@ -73,10 +61,4 @@ export default localStorageApi;
 
  
 
-  // static deleteUsers() {
-  //     localStorage.clear();
-  // }
-
-  // static validateUser(user) {
-
-  // }
+  
