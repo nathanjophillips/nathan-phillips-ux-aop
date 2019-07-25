@@ -93,10 +93,11 @@
 
      connectedCallback() {
        super.connectedCallback();
-       localStorageApi.deleteUsers();
-       // localStorageApi.deleteUser('352');
+       // localStorageApi.getUsers();
        // localStorageApi.getUser('352');
        // localStorageApi.updateUser('352');
+       // localStorageApi.deleteUser('352');
+       // localStorageApi.deleteUsers();
        window.addEventListener("newUser", this.boundNewUser);
      }
 
@@ -109,7 +110,7 @@
        var newUserProfile = Object.assign({},event.detail);
        newUserProfile.id = this.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
-       localStorageApi.createUser(newUserProfile);
+      //  localStorageApi.createUser(newUserProfile);
        this.addUserSelected = false;
      }
 
