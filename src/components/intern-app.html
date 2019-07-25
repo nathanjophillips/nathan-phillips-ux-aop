@@ -3,135 +3,140 @@
 <link rel="import" href="./user-list.html">
 
 <dom-module id="intern-app">
-  <template>
-    <style>
-      h1 {
-        background-color: indigo;
-        color: #fcfcff;
-        padding: 14px 25px;
-        margin: 0px;
-        text-align: center;
-      }
+ <template>
+   <style>
+     h1 {
+       background-color: indigo;
+       color: #fcfcff;
+       padding: 14px 25px;
+       margin: 0px;
+       text-align: center;
+     }
 
-      button {
-        background-color: DarkSlateBlue;
-        color: #fcfcff;
-        border-radius: 3px;
-        text-align: center;
-        padding: 12px;
-        margin-top: 20px;
-        font-size: 12px;
-      }
+     button {
+       background-color: DarkSlateBlue;
+       color: #fcfcff;
+       border-radius: 3px;
+       text-align: center;
+       padding: 12px;
+       margin-top: 20px;
+       font-size: 12px;
+     }
 
-      label {
-        margin-top: 25px;
-        padding-right: 5px;
-      }
+     label {
+       margin-top: 25px;
+       padding-right: 5px;
+     }
 
-      input {
-        font-size: 18px;
-        border: 0;
-        border-bottom: 1px solid indigo;
-        background: transparent;
-      }
+     input {
+       font-size: 18px;
+       border: 0;
+       border-bottom: 1px solid indigo;
+       background: transparent;
+     }
 
-      .add-button {
-        background-color: #fca902;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        padding: 20px;
-        margin-top: 0px;
-        font-size: 18px;
-        padding-right: 40px;
-        padding-left: 40px;
-        text-align: center;
-      
-      }
-    </style>
-    <header>
-      <h1>Intern App</h1>
-    </header>
-    <template is="dom-if" if="[[!addUserSelected]]">
-      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
-    </template>
-    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
-  </template>
-  <script type="module">
-    'use strict'
-    class InternApp extends Polymer.Element {
-      static get is() { return 'intern-app'; }
+     .add-button {
+       background-color: #fca902;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+       padding: 20px;
+       margin-top: 0px;
+       font-size: 18px;
+       padding-right: 40px;
+       padding-left: 40px;
+       text-align: center;
+     }
+   </style>
+   <header>
+     <h1>Intern App</h1>
+   </header>
+   <template is="dom-if" if="[[!addUserSelected]]">
+     <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
+   </template>
+   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
+ </template>
+ <script type="module">
+   'use strict'
+   import localStorageApi from "../api/local-storage.js";
+   class InternApp extends Polymer.Element {
+     static get is() { return 'intern-app'; }
 
-      static get properties() {
-        return {
-          userProfiles: {
-            type: Array,
-            value: () => {
-              return [
-                { id: "001", firstName: 'Nick', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "002", firstName: 'Jack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "003", firstName: 'Betty', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "004", firstName: 'Jordan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "005", firstName: 'Brian', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "006", firstName: 'Gabby', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "007", firstName: 'John', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "008", firstName: 'Tony', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "009", firstName: 'Ryan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
-                { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
-              ];
-            }
-          },
-          addUserSelected: {
-            type: Boolean,
-            value: false
-          }
-        }
-      }
+     static get properties() {
+       return {
+         userProfiles: {
+           type: Array,
+           value: () => {
+             return [
+               { id: "001", firstName: 'Nick', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "002", firstName: 'Jack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "003", firstName: 'Betty', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "004", firstName: 'Jordan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "005", firstName: 'Brian', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "006", firstName: 'Gabby', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "007", firstName: 'John', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "008", firstName: 'Tony', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "009", firstName: 'Ryan', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" },
+               { id: "010", firstName: 'Mack', lastName: 'Cage', phoneNumber: 6413223232, email: "nick@nickcage.com" }
+             ];
+           }
+         },
+         addUserSelected: {
+           type: Boolean,
+           value: false
+         }
+       }
+     }
 
-      constructor() {
-        super();
-        this.boundNewUser = this.newUser.bind(this);
-      }
+     constructor() {
+       super();
+       this.boundNewUser = this.newUser.bind(this);
+     }
 
-      connectedCallback() {
-        super.connectedCallback();
-        window.addEventListener("newUser", this.boundNewUser);   
-      }
+     connectedCallback() {
+       super.connectedCallback();
+       localStorageApi.deleteUsers();
+       // localStorageApi.deleteUser('352');
+       // localStorageApi.getUser('352');
+       // localStorageApi.updateUser('352');
+       window.addEventListener("newUser", this.boundNewUser);
+     }
 
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        window.removeEventListener("newUser", this.boundNewUser); 
-      }
+     disconnectedCallback() {
+       super.disconnectedCallback();
+       window.removeEventListener("newUser", this.boundNewUser);
+     }
 
-      newUser(event) {
-        var newUserProfile = Object.assign({},event.detail);
-        newUserProfile.id = this.genId();
-        this.pushToArray(this.userProfiles, newUserProfile);
-        this.addUserSelected = false;
-      }
+     newUser(event) {
+       var newUserProfile = Object.assign({},event.detail);
+       newUserProfile.id = this.genId();
+       this.pushToArray(this.userProfiles, newUserProfile);
+       localStorageApi.createUser(newUserProfile);
+       this.addUserSelected = false;
+     }
 
-      pushToArray(userProfiles, newUserProfile) {
-        var existingIds = userProfiles.map((newUserProfile) => newUserProfile.id);
-        if (!existingIds.includes(newUserProfile.id)) {
-          this.push('userProfiles', newUserProfile);
-        }
-        else {
-          newUserProfile.id = this.genId();
-          this.push('userProfiles', newUserProfile);
-        };
-      };
+     pushToArray(userProfiles, newUserProfile) {
+       var existingIds = userProfiles.map((newUserProfile) => newUserProfile.id); 
+       if (!existingIds.includes(newUserProfile.id)) {
+         this.push('userProfiles', newUserProfile);
+       }
+       else {
+         newUserProfile.id = this.genId();
+         this.push('userProfiles', newUserProfile);
+       };
+     }
 
-      genId() {
-        return '' + Math.random().toString(9).substr(2, 3);
-      }
+     genId() {
+       return '' + Math.random().toString(9).substr(2, 3);
+     }
 
-      createNewUserProfile(event) {
-        this.addUserSelected = !this.addUserSelected;
-      }
+     createNewUserProfile(event) {
+       this.addUserSelected = !this.addUserSelected;
+     }
 
-      changeButtonText(addUserSelected) {
-        return addUserSelected ? `Save` : `Create User` ;
-      }
-    }
-    customElements.define(InternApp.is, InternApp);
-    export default InternApp;
-  </script>
+     changeButtonText(addUserSelected) {
+       return addUserSelected ? `Save` : `Create User`;
+     }
+   }
+   customElements.define(InternApp.is, InternApp);
+   export default InternApp;
+ </script>
 </dom-module>
