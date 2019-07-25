@@ -91,6 +91,7 @@
           <tr>
             <td><button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button></td>
             <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+            <td><button type="button" on-click="deleteUserProfile">Delete</button></td>
           </tr>
         </table>
     </template>
@@ -120,6 +121,7 @@
   </template>
   <script type="module">
     'use strict';
+    import localStorageApi from "../api/local-storage.js";
     class UserProfile extends Polymer.Element {
       static get is() { return 'user-profile'; }
 
@@ -168,7 +170,11 @@
           email: ''
         };
       }
-      
+
+      deleteUserProfile(id) {
+        localStorageApi.deleteUser(id)
+      }
+
       cardExpandCollapse(event) {
         this.isExpanded = !this.isExpanded;
       }
