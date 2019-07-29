@@ -26,9 +26,6 @@
         is-populated>
       </user-profile>
     </template>
-    <template is="dom-if" if="[[isPopulated]]">
-      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users</button>
-    </template>
   </template>
   <script type="module">
     'use strict'
@@ -50,9 +47,7 @@
         }
       }
 
-      deleteAll() {
-        localStorageApi.deleteUsers();
-      }  
+       
 
     }
     customElements.define(UserList.is, UserList);

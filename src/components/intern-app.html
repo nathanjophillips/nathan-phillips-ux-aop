@@ -39,11 +39,16 @@
        background-color: #fca902;
        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
        padding: 20px;
-       margin-top: 0px;
        font-size: 18px;
        padding-right: 40px;
        padding-left: 40px;
        text-align: center;
+       margin-bottom: 10px;
+     }
+
+     .delete-all-button {
+       background-color: #d1250ee3;
+       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
      }
    </style>
    <header>
@@ -53,6 +58,9 @@
      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
    </template>
    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
+   <template is="dom-if" if="[[cardsPopulated]]">
+      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users</button>
+   </template>
  </template>
  <script type="module">
    'use strict';
@@ -69,6 +77,10 @@
          addUserSelected: {
            type: Boolean,
            value: false
+         },
+         cardsPopulated: {
+            type: Boolean,
+            value: false
          }
        }
      }
@@ -88,22 +100,31 @@
        window.removeEventListener("newUser", this.boundNewUser);
      }
 
+     deleteAll() {
+      if (window.confirm("Are you sure you want to delete all users?")) {
+        localStorageApi.deleteUsers();
+        cardsPopulated = false;
+        }  
+      } 
+
      newUser(event) {
        const newUserProfile = Object.assign({},event.detail);
        newUserProfile.id = localStorageApi.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
-       localStorageApi.createUser(newUserProfile);
        this.addUserSelected = false;
+       this.cardsPopulated = true;
      }
 
      pushToArray(userProfiles, newUserProfile) {
        const existingIds = userProfiles.map(newUserProfile => newUserProfile.id); 
        if (!existingIds.includes(newUserProfile.id)) {
+         localStorageApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
        }
        else {
+         console.log('insert attempt failed.  A new id will be generated');
          newUserProfile.id = this.localStorageApi.genId();
-         this.push('userProfiles', newUserProfile);
+         this.pushToArray(this.userProfiles, newUserProfile);
        };
      }
 
