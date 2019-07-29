@@ -64,9 +64,7 @@
        return {
          userProfiles: {
            type: Array,
-           value: () => {
-             return localStorageApi.getUsers(); 
-           }
+           value: () => localStorageApi.getUsers()
          },
          addUserSelected: {
            type: Boolean,
@@ -82,11 +80,6 @@
 
      connectedCallback() {
        super.connectedCallback();
-       // localStorageApi.getUsers();
-      //  console.log(localStorageApi.getUser('034'));
-       // localStorageApi.updateUser('352');
-      //  localStorageApi.deleteUser('034');
-       // localStorageApi.deleteUsers();
        window.addEventListener("newUser", this.boundNewUser);
      }
 
@@ -96,26 +89,22 @@
      }
 
      newUser(event) {
-       var newUserProfile = Object.assign({},event.detail);
-       newUserProfile.id = this.genId();
+       const newUserProfile = Object.assign({},event.detail);
+       newUserProfile.id = localStorageApi.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        localStorageApi.createUser(newUserProfile);
        this.addUserSelected = false;
      }
 
      pushToArray(userProfiles, newUserProfile) {
-       var existingIds = userProfiles.map((newUserProfile) => newUserProfile.id); 
+       const existingIds = userProfiles.map(newUserProfile => newUserProfile.id); 
        if (!existingIds.includes(newUserProfile.id)) {
          this.push('userProfiles', newUserProfile);
        }
        else {
-         newUserProfile.id = this.genId();
+         newUserProfile.id = this.localStorageApi.genId();
          this.push('userProfiles', newUserProfile);
        };
-     }
-
-     genId() {
-       return '' + Math.random().toString(9).substr(2, 3);
      }
 
      createNewUserProfile(event) {
