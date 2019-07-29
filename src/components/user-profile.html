@@ -40,6 +40,7 @@
         padding-right: 40px;
         padding-left: 40px;
       }
+      
       template {
         display: flex;
         justify-content: center;
@@ -118,6 +119,7 @@
           </tr>
         </table>
     </template>
+    
   </template>
   <script type="module">
     'use strict';
@@ -171,9 +173,10 @@
         };
       }
 
-      deleteUserProfile(id) {
-        localStorageApi.deleteUser(id)
-      }
+      // deleteUserProfile(id) {
+      //   localStorageApi.deleteUser(id);
+      // }
+
 
       cardExpandCollapse(event) {
         this.isExpanded = !this.isExpanded;
