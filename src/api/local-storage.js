@@ -1,23 +1,21 @@
 class localStorageApi {
 
   static getUsers() {
-    var existingUsers = JSON.parse(localStorage.getItem("allStoredUsers")) || [];
-    console.log("getUsers() current existing stored users = ", existingUsers);
+    const existingUsers = JSON.parse(localStorage.getItem("storedUser")) || [];
     return existingUsers;
  }
  
   static createUser(newUser) {
-    var existingUsers = localStorageApi.getUsers();
+    const existingUsers = localStorageApi.getUsers();
     existingUsers.push(newUser);
-    localStorage.setItem("allStoredUsers", JSON.stringify(existingUsers));
-    console.log("createUser() new current existing users = ", existingUsers);
+    localStorage.setItem("StoredUser", JSON.stringify(existingUsers));
     return existingUsers;
   }
 
   static getUser(userId) {
-    var existingUsers = localStorageApi.getUsers();
-    var found = existingUsers.find(allStoredUsers => {
-      return allStoredUsers.id === id;
+    const existingUsers = localStorageApi.getUsers();
+    const found = existingUsers.find(StoredUser => {
+      return StoredUser.id === id;
     });
     return found;
   }
@@ -31,33 +29,26 @@ class localStorageApi {
     // console.log(matchingUser);
   }
 
+  static replaceUser(id, newUser) {
+  }
+
   static deleteUser(id) {
     var deleteThisUser = localStorageApi.getUser(id);
     // var keyIndex = deleteThisUser.key
-    console.log("deleteUser() the user to delete is =", deleteThisUser);
-    return localStorage.removeItem("allStoredUsers" === deleteThisUser);
+    return localStorage.removeItem("StoredUser" === deleteThisUser);
   }
 
   static deleteUsers() {
     localStorage.clear();
-    consol.log("deleteUsers() all users deleted = ", localStorageApi.getUsers());
   }
 
-  // static deleteUsers() {
-  //     localStorage.clear();
-  // }
 
-  // static validateUser(user) {
-
-  // }
+  static validateUser() {
+  }
 }
-
 export default localStorageApi;
 
-
-  // static replaceUser(id, newUser) {
-
-  // }
+  
 
  
 
