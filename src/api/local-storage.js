@@ -29,13 +29,21 @@ class localStorageApi {
     localStorage.setItem("storedUser", JSON.stringify(existingUsers));
   }
 
-  static replaceUser(id, newUser) {
+  static replaceUser(userId, newUser) {
+    const existingUsers = localStorageApi.getUsers();
+    const userKey = existingUsers.findIndex(user => user.id === userId);
+    console.log(userKey);
+    existingUsers.splice(userKey, 1, newUser);
+    console.log(existingUsers);
+    localStorage.setItem("storedUser", JSON.stringify(existingUsers));
   }
 
   static deleteUser(userId) {
-    const deleteThisUser = localStorageApi.getUser(id);
-    // var keyIndex = deleteThisUser.key
-    return localStorage.removeItem("storedUser" === deleteThisUser);
+    const existingUsers = localStorageApi.getUsers();
+    const deleteThisUser = localStorageApi.getUser(userId);
+    const userKey = existingUsers.findIndex(user => user.id === userId);
+    existingUsers.removeItem(userKey);
+    localStorageApi.removeItem(userKey);
   }
 
   static deleteUsers() {
