@@ -1,61 +1,65 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
 <link rel="import" href="./user-list.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-add.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-person-add.html">
 
 <dom-module id="intern-app">
  <template>
-   <style>
-     h1 {
-       background-color: indigo;
-       color: #fcfcff;
-       padding: 14px 25px;
-       margin: 0px;
-       text-align: center;
-     }
+  <style>
+    h1 {
+      font-size: 45px;
+      padding: 12px 20px;
+      margin: 0px;
+    }
+  
+    .expand {
+      display: table-row;
+    }
+  
+    .collapse {
+      display: none;
+    }
+  
+    .add-button {
+      background-color: #fca902;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding: 18px;
+      font-size: 20px;
+      padding-right: 30px;
+      padding-left: 30px;
+      text-align: center;
+      margin: 15px;
+      border-radius: 4px;
+      font-weight: 400;
+      color: #fcfcff;
+    }
+    
 
-     button {
-       background-color: DarkSlateBlue;
-       color: #fcfcff;
-       border-radius: 3px;
-       text-align: center;
-       padding: 12px;
-       margin-top: 20px;
-       font-size: 12px;
-     }
-
-     label {
-       margin-top: 25px;
-       padding-right: 5px;
-     }
-
-     input {
-       font-size: 18px;
-       border: 0;
-       border-bottom: 1px solid indigo;
-       background: transparent;
-     }
-
-     .add-button {
-       background-color: #fca902;
-       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-       padding: 20px;
-       font-size: 18px;
-       padding-right: 40px;
-       padding-left: 40px;
-       text-align: center;
-       margin-bottom: 10px;
-     }
-
-     .delete-all-button {
-       background-color: #d1250ee3;
-       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-     }
-   </style>
+    .add-button:hover {
+      opacity: 0.9;
+    }
+  
+    .delete-all-button {
+      background-color: #d1250ee3;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      color: #fcfcff;
+      border-radius: 3px;
+      text-align: center;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+    .delete-all-button:hover {
+      opacity: 0.9;
+    }
+  </style>
    <header>
      <h1>Intern App</h1>
    </header>
    <template is="dom-if" if="[[!addUserSelected]]">
-     <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]</button>
+     <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add style="fill:#fcfcff; display: -webkit-inline-box;
+      vertical-align: text-bottom; padding-left: 13px;"></jha-icon-person-add></button>
    </template>
    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
@@ -132,7 +136,7 @@
      }
 
      changeButtonText(addUserSelected) {
-       return addUserSelected ? `Save` : `Create User`;
+       return addUserSelected ? `Save` : `Create User `;
      }
    }
    customElements.define(InternApp.is, InternApp);

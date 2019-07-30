@@ -1,17 +1,23 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-email.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-phone.html">
 
 <dom-module id="user-profile">
   <template>
     <style>
+       @import url('https://fonts.googleapis.com/css?family=Poppins');
+
       table {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         background: #eef1f4;
         border-radius: 3px;
         padding: 30px;
         margin-top: 10px;
-        width: 400px;
+        max-width: 400px;
+        min-width: 400px;
       }
+
       button {
         background-color: DarkSlateBlue;
         color: #fcfcff;
@@ -21,30 +27,22 @@
         margin-top: 20px;
         font-size: 12px;
       }
+
+      button:hover {
+      opacity: 0.9;
+      }
+
       label {
         margin-top: 25px;
         padding-right: 5px;
       }
+
       input {
         font-size: 18px;
         border: 0;
         border-bottom: 1px solid indigo;
         background: transparent;
       }  
-      .add-button {
-        background-color: #fca902;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        padding: 20px;
-        margin-top: 0px;
-        font-size: 18px;
-        padding-right: 40px;
-        padding-left: 40px;
-      }
-      
-      template {
-        display: flex;
-        justify-content: center;
-      }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
@@ -81,11 +79,11 @@
           </tr>
           <template is="dom-if" if="[[isExpanded]]">
             <tr>
-              <td>Phone:</td>
+              <td><jha-icon-phone></jha-icon-phone></td>
               <td>[[user.phoneNumber]]</td>
             </tr>
             <tr>
-              <td>Email:</td>
+              <td><jha-icon-email></jha-icon-email></td>
               <td>[[user.email]]</td>
             </tr>
           </template>

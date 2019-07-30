@@ -1,21 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-:root {
-    --color-blue: #3aaeda;
-    --color-green: #4caf50;
-    --color-yellow: #fca902;
-    --color-red: #f44336;
-    --color-purple: #7d57c1;
-    --color-teal: #00acc3;
-    --color-blue-dark: #0070b7;
-    --color-gray-dark: #272d33;
-    --color-gray-base: #455564;
-    --color-gray-medium: #8d99a0;
-    --color-gray-light: #e4e7ea;
-    --color-gray-lighter: #eef1f4;
-  }
 
-html, body {
+body {
     font-family: "Poppins", sans-serif;
     text-align: -webkit-center;
     margin-top: 0px;
@@ -23,68 +9,5 @@ html, body {
     justify-content: center;    
 }
 
-ul {
-    display: block;
-    white-space: nowrap;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
 
-a {
-    display: block;
-    text-decoration: none;
-    background-color: indigo;
-    color: #fcfcff;
-    padding: 14px 25px;
-} 
-
-a:hover {
-    background-color: DarkSlateBlue;
-}
-
-table, fieldset {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: #eef1f4;
-    border-radius: 3px;
-    padding: 30px;
-    margin-top: 10px;
-    width: 350px;
-}
-fieldset {
-    max-width: 375px;
-    padding: 15px;
-    border: none;
-    padding: 20px;
-}
-fieldset div {
-    text-align: left;
-    margin-top: 15px;
-}
-button {
-    background-color: DarkSlateBlue;
-    color: #fcfcff;
-    border-radius: 3px;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-}
-label {
-    font-size: 18px;
-    margin-top: 25px;
-    padding-left: 30px;
-    padding-right: 5px;
-}
-input {
-    font-size: 18px;
-    border: 0;
-    border-bottom: 1px solid indigo;
-    background: transparent;
-}
-.expand {
-    display: table-row;
-}
-.collapse {
-    display: none;
-  }
   
