@@ -17,10 +17,6 @@ class localStorageApi {
     return existingUsers;
   }
 
-  static genId() {
-    return '' + Math.random().toString(9).substr(2, 3);
-  }
-
   static updateUser(userId, newUserData) {
     const existingUsers = localStorageApi.getUsers();
     const newUserProfile = Object.assign(localStorageApi.getUser(userId), newUserData);
@@ -49,8 +45,21 @@ class localStorageApi {
     localStorage.setItem("storedUser", JSON.stringify(existingUsers));
   }
 
+  static genId() {
+    return '' + Math.random().toString(9).substr(2, 3);
+  }
 
-  static validateUser() {
+  static validateUser(user) {
+    const existingUsers = localStorageApi.getUsers();
+    const existingIds = existingUsers.map(user => user.id); 
+    if (!existingIds.includes(user.id)) {
+      return true;
+    }
+    else {
+      console.log("insert attempt failed.  A new id will be generated");
+      user.id = localStorageApi.genId();
+      localStorageApi.validateUser(user);
+    }
   }
 }
 export default localStorageApi;

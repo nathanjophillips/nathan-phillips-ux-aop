@@ -117,13 +117,12 @@
 
      pushToArray(userProfiles, newUserProfile) {
        const existingIds = userProfiles.map(newUserProfile => newUserProfile.id); 
-       if (!existingIds.includes(newUserProfile.id)) {
+       const validUser = localStorageApi.validateUser(newUserProfile);
+       if (validUser) {
          localStorageApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
        }
        else {
-         console.log('insert attempt failed.  A new id will be generated');
-         newUserProfile.id = this.localStorageApi.genId();
          this.pushToArray(this.userProfiles, newUserProfile);
        };
      }
