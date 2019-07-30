@@ -22,16 +22,10 @@ class localStorageApi {
   }
 
   static updateUser(userId, newUserData) {
-    const matchingUser = localStorageApi.getUser(userId);
-    const newUserProfile = Object.assign(matchingUser, newUserData);
-    console.log(newUserProfile);
-
     const existingUsers = localStorageApi.getUsers();
+    const newUserProfile = Object.assign(localStorageApi.getUser(userId), newUserData);
     const userKey = existingUsers.findIndex(user => user.id === userId);
-    console.log(userKey);
-    
     existingUsers.splice(userKey, 1, newUserProfile);
-    console.log(existingUsers);
     localStorage.setItem("storedUser", JSON.stringify(existingUsers));
   }
 
