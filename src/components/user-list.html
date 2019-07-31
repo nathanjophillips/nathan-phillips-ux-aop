@@ -4,7 +4,15 @@
 <dom-module id="user-list">
   <template>
     <style>
-      
+      user-profile {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background: #eef1f4;
+        border-radius: 3px;
+        padding: 18px;
+        margin-top: 15px;
+        width: 400px;
+        display: block;
+      }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
       <user-profile 
@@ -37,9 +45,6 @@
           }
         }
       }
-
-       
-
     }
     customElements.define(UserList.is, UserList);
     export default UserList;

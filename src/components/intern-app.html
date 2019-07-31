@@ -35,12 +35,14 @@
       color: #fcfcff;
     }
     
-
     .add-button:hover {
       opacity: 0.9;
     }
   
     .delete-all-button {
+      position: -webkit-sticky; 
+      position: sticky;
+      top: 0;
       background-color: #d1250ee3;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       color: #fcfcff;
@@ -50,9 +52,11 @@
       margin-top: 20px;
       font-size: 12px;
     }
+
     .delete-all-button:hover {
       opacity: 0.9;
     }
+    
   </style>
    <header>
      <h1>Intern App</h1>
@@ -63,7 +67,7 @@
    </template>
    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
-      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users</button>
+      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
    </template>
  </template>
  <script type="module">
