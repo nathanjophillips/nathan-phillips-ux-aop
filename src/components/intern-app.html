@@ -15,10 +15,12 @@
   
     .expand {
       display: table-row;
+      transition: all 0.3s ease;
     }
   
     .collapse {
       display: none;
+      transition: all 0.3s ease;
     }
   
     .add-button {
@@ -37,16 +39,17 @@
     
     .add-button:hover {
       opacity: 0.9;
+      transition: all 0.3s ease;
     }
   
     .delete-all-button {
-      position: -webkit-sticky; 
-      position: sticky;
-      top: 0;
+      position: fixed;
+      top: 90%;
+      right: 1%;
       background-color: #d1250ee3;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       color: #fcfcff;
-      border-radius: 3px;
+      border-radius: 4px;
       text-align: center;
       padding: 12px;
       margin-top: 20px;
@@ -55,6 +58,26 @@
 
     .delete-all-button:hover {
       opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+
+    .collapse-all-button {
+      position: fixed;
+      top: 90%;
+      right: 9%;
+      background-color: indigo;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      color: #fcfcff;
+      border-radius: 4px;
+      text-align: center;
+      padding: 12px;
+      margin-top: 20px;
+      font-size: 12px;
+    }
+
+    .collapse-all-button:hover {
+      opacity: 0.9;
+      transition: all 0.3s ease;
     }
     
   </style>
@@ -68,6 +91,7 @@
    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
       <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
+      <button class="collapse-all-button" type="button" on-click="collapseAll">Collapse All Users</button>
    </template>
  </template>
  <script type="module">
@@ -86,6 +110,10 @@
            type: Boolean,
            value: false
          },
+         isExpanded: {
+            type: Boolean,
+            value: true
+          },
          cardsPopulated: {
             type: Boolean,
             value: false
@@ -114,6 +142,9 @@
         cardsPopulated = false;
         }  
       } 
+
+      collapseAll() {
+      }
 
      newUser(event) {
        const newUserProfile = Object.assign({},event.detail);

@@ -25,7 +25,7 @@
       }
 
       button {
-        background-color: DarkSlateBlue;
+        background-color: indigo;
         color: #fcfcff;
         border-radius: 3px;
         text-align: center;
@@ -40,6 +40,7 @@
 
       button:hover {
         opacity: 0.9;
+        transition: all 0.3s ease;
       }
 
       label {
@@ -108,7 +109,7 @@
       </table>
       <button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button>
       <button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]<jha-icon-edit style="height: 16px; width: 16px; vertical-align: text-bottom; padding-left: 5px; fill:#fcfcff;"></jha-icon-edit></button>
-      <button class="delete" type="button" on-click="deleteUserProfile">Delete <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
+      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
     </template>
     <template is="dom-if" if="[[editSelected]]">
         <table>
@@ -185,9 +186,10 @@
         };
       }
 
-      // deleteUserProfile(id) {
-      //   localStorageApi.deleteUser(id);
-      // }
+      deleteUserProfile(e) {
+        const user = e.target.getAttribute('indexed');
+        localStorageApi.deleteUser(user);
+      }
 
 
       cardExpandCollapse(event) {
