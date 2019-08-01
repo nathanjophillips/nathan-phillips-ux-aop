@@ -6,7 +6,9 @@ body {
     text-align: -webkit-center;
     margin-top: 0px;
     display: flex;
-    justify-content: center;    
+    justify-content: center;
+    background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/debut_light.png");    
+    
 }
 
 

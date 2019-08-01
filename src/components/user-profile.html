@@ -54,7 +54,7 @@
         border: 0;
         border-bottom: 1px solid indigo;
         background: transparent;
-        margin-top: 15px;
+        margin-top: 5px;
         padding-top: 10px;
       }
 
@@ -186,11 +186,10 @@
         };
       }
 
-      deleteUserProfile(e) {
-        const user = e.target.getAttribute('indexed');
-        localStorageApi.deleteUser(user);
+      deleteUserProfile(event) {
+        const user = event.target.getAttribute('indexed');
+        this.set('user', localStorageApi.deleteUser(user));
       }
-
 
       cardExpandCollapse(event) {
         this.isExpanded = !this.isExpanded;
