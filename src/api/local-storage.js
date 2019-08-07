@@ -1,7 +1,7 @@
 class localStorageApi {
 
   static getUsers() {
-    const existingUsers = JSON.parse(localStorage.getItem("storedUser")) || [];
+    const existingUsers = JSON.parse(localStorage.getItem("storedUsers")) || [];
     return existingUsers;
   }
 
