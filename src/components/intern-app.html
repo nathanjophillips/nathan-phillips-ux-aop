@@ -45,7 +45,8 @@
     .delete-all-button {
       position: fixed;
       top: 90%;
-      right: 1%;
+      right: 2%;
+      width: 150px;
       background-color: #d1250ee3;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       color: #fcfcff;
@@ -63,8 +64,9 @@
 
     .collapse-all-button {
       position: fixed;
-      top: 90%;
-      right: 9%;
+      top: 83%;
+      right: 2%;
+      width: 150px;
       background-color: indigo;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       color: #fcfcff;
@@ -129,19 +131,27 @@
      connectedCallback() {
        super.connectedCallback();
        window.addEventListener("newUser", this.boundNewUser);
+       window.addEventListener("deleteUser", this.deleteUser);
      }
 
      disconnectedCallback() {
        super.disconnectedCallback();
        window.removeEventListener("newUser", this.boundNewUser);
+       window.removeEventListener("deleteUser", this.deleteUser);
      }
 
      deleteAll() {
       if (window.confirm("Are you sure you want to delete all users?")) {
-        localStorageApi.deleteUsers();
+        this.set('userProfiles', localStorageApi.deleteUsers());
         cardsPopulated = false;
         }  
       } 
+
+      deleteUser(event) {
+        const user = event.target.getAttribute('indexed');
+        localStorageApi.deleteUser(user);
+        this.set('[[user-profiles]]', localStorageApi.getUsers());
+      }
 
      collapseAll() {}
 
