@@ -129,7 +129,6 @@
 
      connectedCallback() {
        super.connectedCallback();
-       console.log(localStorageApi.updateUser("655",{ firstName: "Ted" }));
        window.addEventListener("newUser", this.boundNewUser);
        window.addEventListener("deleteUser", this.deleteUser);
      }
