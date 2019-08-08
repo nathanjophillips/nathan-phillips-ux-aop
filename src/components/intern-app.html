@@ -93,7 +93,6 @@
    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
       <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
-      <button class="collapse-all-button" type="button" on-click="collapseAll">Collapse All Users</button>
    </template>
  </template>
  <script type="module">
@@ -130,6 +129,7 @@
 
      connectedCallback() {
        super.connectedCallback();
+       console.log(localStorageApi.updateUser("655",{ firstName: "Ted" }));
        window.addEventListener("newUser", this.boundNewUser);
        window.addEventListener("deleteUser", this.deleteUser);
      }
@@ -153,10 +153,8 @@
         this.set('[[user-profiles]]', localStorageApi.getUsers());
       }
 
-     collapseAll() {}
-
      newUser(event) {
-       const newUserProfile = Object.assign({},event.detail);
+       const newUserProfile = event.detail;
        newUserProfile.id = localStorageApi.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        this.addUserSelected = false;

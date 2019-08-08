@@ -6,15 +6,13 @@ class localStorageApi {
   }
 
   static getUser(userId) {
-    const existingUsers = localStorageApi.getUsers();
-    return existingUsers.find(storedUser =>  storedUser.id === userId );
+    return localStorageApi.getUsers().find(storedUsers =>  storedUsers.id === userId );
   }
 
   static createUser(newUserProfile) {
     const existingUsers = localStorageApi.getUsers();
     existingUsers.push(newUserProfile);
-    localStorage.setItem("storedUser", JSON.stringify(existingUsers));
-    return existingUsers;
+    localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
 
   static updateUser(userId, newUserData) {
@@ -22,27 +20,27 @@ class localStorageApi {
     const newUserProfile = Object.assign(localStorageApi.getUser(userId), newUserData);
     const userKey = existingUsers.findIndex(user => user.id === userId);
     existingUsers.splice(userKey, 1, newUserProfile);
-    localStorage.setItem("storedUser", JSON.stringify(existingUsers));
+    localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
 
   static replaceUser(userId, newUser) {
     const existingUsers = localStorageApi.getUsers();
     const userKey = existingUsers.findIndex(user => user.id === userId);
     existingUsers.splice(userKey, 1, newUser);
-    localStorage.setItem("storedUser", JSON.stringify(existingUsers));
+    localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
 
   static deleteUser(userId) {
     const existingUsers = localStorageApi.getUsers();
     const userKey = existingUsers.findIndex(user => user.id === userId);
     existingUsers.splice(userKey, 1);
-    localStorage.setItem("storedUser", JSON.stringify(existingUsers));
+    localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
 
   static deleteUsers() {
     localStorage.clear();
     const existingUsers = localStorageApi.getUsers();
-    localStorage.setItem("storedUser", JSON.stringify(existingUsers));
+    localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
 
   static genId() {
