@@ -115,6 +115,10 @@
             type: Boolean,
             value: true
           },
+          isPopulated: {
+            type: Boolean,
+            value: true
+          },
          cardsPopulated: {
             type: Boolean,
             value: false
@@ -125,18 +129,19 @@
      constructor() {
        super();
        this.boundNewUser = this.newUser.bind(this);
+       this.boundDeleteUser = this.deleteUser.bind(this);
      }
 
      connectedCallback() {
        super.connectedCallback();
        window.addEventListener("newUser", this.boundNewUser);
-       window.addEventListener("deleteUser", this.deleteUser);
+       window.addEventListener("deleteUser", this.boundDeleteUser);
      }
 
      disconnectedCallback() {
        super.disconnectedCallback();
        window.removeEventListener("newUser", this.boundNewUser);
-       window.removeEventListener("deleteUser", this.deleteUser);
+       window.removeEventListener("deleteUser", this.boundDeleteUser);
      }
 
      deleteAll() {
@@ -147,9 +152,7 @@
       } 
 
       deleteUser(event) {
-        const user = event.target.getAttribute('indexed');
-        localStorageApi.deleteUser(user);
-        this.set('[[user-profiles]]', localStorageApi.getUsers());
+        this.set('userProfiles', localStorageApi.getUsers());
       }
 
      newUser(event) {
