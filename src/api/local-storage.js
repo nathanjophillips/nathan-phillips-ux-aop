@@ -26,6 +26,7 @@ class localStorageApi {
   static replaceUser(userId, newUser) {
     const existingUsers = localStorageApi.getUsers();
     const userKey = existingUsers.findIndex(user => user.id === userId);
+    newUser.id = userId;
     existingUsers.splice(userKey, 1, newUser);
     localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
@@ -54,9 +55,7 @@ class localStorageApi {
       return true;
     }
     else {
-      console.log("insert attempt failed.  A new id will be generated");
-      user.id = localStorageApi.genId();
-      localStorageApi.validateUser(user);
+      return console.log("insert attempt failed. "), false;
     }
   }
 }

@@ -147,7 +147,7 @@
      deleteAll() {
       if (window.confirm("Are you sure you want to delete all users?")) {
         this.set('userProfiles', localStorageApi.deleteUsers());
-        cardsPopulated = false;
+        this.cardsPopulated = false;
         }  
       } 
 
@@ -164,15 +164,10 @@
      }
 
      pushToArray(userProfiles, newUserProfile) {
-       const existingIds = userProfiles.map(newUserProfile => newUserProfile.id); 
-       const validUser = localStorageApi.validateUser(newUserProfile);
-       if (validUser) {
+       if (localStorageApi.validateUser(newUserProfile)) {
          localStorageApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
        }
-       else {
-         this.pushToArray(this.userProfiles, newUserProfile);
-       };
      }
 
      createNewUserProfile(event) {
