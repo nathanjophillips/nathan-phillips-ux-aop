@@ -121,7 +121,7 @@
           },
          cardsPopulated: {
             type: Boolean,
-            value: false
+            value: true
          }
        }
      }
@@ -147,8 +147,7 @@
      deleteAll() {
       if (window.confirm("Are you sure you want to delete all users?")) {
         this.set('userProfiles', localStorageApi.deleteUsers());
-        this.cardsPopulated = false;
-        }  
+        } 
       } 
 
       deleteUser(event) {
@@ -160,7 +159,6 @@
        newUserProfile.id = localStorageApi.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        this.addUserSelected = false;
-       this.cardsPopulated = true;
      }
 
      pushToArray(userProfiles, newUserProfile) {
