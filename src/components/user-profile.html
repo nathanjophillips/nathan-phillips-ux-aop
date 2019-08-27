@@ -135,7 +135,6 @@
   </template>
   <script type="module">
     'use strict';
-    import localStorageApi from "../api/local-storage.js";
     class UserProfile extends Polymer.Element {
       static get is() { return 'user-profile'; }
 
@@ -145,6 +144,9 @@
             type: Boolean,
             value: true
           },
+          localStorageClass: {
+            type: Object,
+         },
           editSelected: {
             type: Boolean,
             value: false
@@ -187,7 +189,7 @@
 
       deleteUserProfile(event) {
         const user = event.target.getAttribute('indexed');
-        localStorageApi.deleteUser(user);
+        this.localStorageClass.deleteUser(user);
         this.dispatchEvent(new CustomEvent("deleteUser", {
           bubbles: true,
           composed: true,

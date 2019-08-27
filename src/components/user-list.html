@@ -16,19 +16,20 @@
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
       <user-profile 
-        add-user-selected="[[addUserSelected]]">
+        add-user-selected="[[addUserSelected]]"
+        local-storage-class="[[localStorageClass]]">
       </user-profile>
     </template>
     <template is="dom-repeat" items="[[userProfiles]]">
       <user-profile
         user="[[item]]"
+        local-storage-class="[[localStorageClass]]"
         is-populated>
       </user-profile>
     </template>
   </template>
   <script type="module">
     'use strict'
-    import localStorageApi from "../api/local-storage.js";
     class UserList extends Polymer.Element {
       static get is() { return 'user-list'; }
 
@@ -37,6 +38,9 @@
           userProfiles: {
             type: Array,
           },
+          localStorageClass: {
+            type: Object,
+         },
           addUserSelected: {
             type: Boolean,
           },

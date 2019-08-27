@@ -23,14 +23,6 @@ class localStorageApi {
     localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
   }
 
-  static replaceUser(userId, newUser) {
-    const existingUsers = localStorageApi.getUsers();
-    const userKey = existingUsers.findIndex(user => user.id === userId);
-    newUser.id = userId;
-    existingUsers.splice(userKey, 1, newUser);
-    localStorage.setItem("storedUsers", JSON.stringify(existingUsers));
-  }
-
   static deleteUser(userId) {
     const existingUsers = localStorageApi.getUsers();
     const userKey = existingUsers.findIndex(user => user.id === userId);
