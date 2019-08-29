@@ -135,28 +135,21 @@
        super();
        this.boundNewUser = this.newUser.bind(this);
        this.boundDeleteUser = this.deleteUser.bind(this);
+       this.boundEditUser = this.editUser.bind(this);
      }
 
      connectedCallback() {
        super.connectedCallback();
        window.addEventListener("newUser", this.boundNewUser);
        window.addEventListener("deleteUser", this.boundDeleteUser);
+       window.addEventListener("editUser", this.boundEditUser);
      }
 
      disconnectedCallback() {
        super.disconnectedCallback();
        window.removeEventListener("newUser", this.boundNewUser);
        window.removeEventListener("deleteUser", this.boundDeleteUser);
-     }
-
-     deleteAll() {
-       if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', this.deleteUsers());
-       }
-     }
-
-     deleteUser(event) {
-       this.set('userProfiles', this.localStorageClass.getUsers());
+       window.removeEventListener("editUser", this.boundEditUser);
      }
 
      newUser(event) {
@@ -164,6 +157,20 @@
        newUserProfile.id = this.localStorageClass.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        this.addUserSelected = false;
+     }
+
+     editUser(event) {
+      this.set('userProfiles', this.localStorageClass.getUsers());
+     }
+
+     deleteUser(event) {
+       this.set('userProfiles', this.localStorageClass.getUsers());
+     }
+
+     deleteAll() {
+       if (window.confirm("Are you sure you want to delete all users?")) {
+         this.set('userProfiles', this.deleteUsers());
+       }
      }
 
      pushToArray(userProfiles, newUserProfile) {
