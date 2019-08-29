@@ -134,22 +134,19 @@
      constructor() {
        super();
        this.boundNewUser = this.newUser.bind(this);
-       this.boundDeleteUser = this.deleteUser.bind(this);
-       this.boundEditUser = this.editUser.bind(this);
+       this.boundUpdateUsers = this.updateUsers.bind(this);
      }
 
      connectedCallback() {
        super.connectedCallback();
        window.addEventListener("newUser", this.boundNewUser);
-       window.addEventListener("deleteUser", this.boundDeleteUser);
-       window.addEventListener("editUser", this.boundEditUser);
+       window.addEventListener("updateUsers", this.boundUpdateUsers);
      }
 
      disconnectedCallback() {
        super.disconnectedCallback();
        window.removeEventListener("newUser", this.boundNewUser);
-       window.removeEventListener("deleteUser", this.boundDeleteUser);
-       window.removeEventListener("editUser", this.boundEditUser);
+       window.removeEventListener("updateUsers", this.boundUpdateUsers);
      }
 
      newUser(event) {
@@ -159,12 +156,8 @@
        this.addUserSelected = false;
      }
 
-     editUser(event) {
+     updateUsers(event) {
       this.set('userProfiles', this.localStorageClass.getUsers());
-     }
-
-     deleteUser(event) {
-       this.set('userProfiles', this.localStorageClass.getUsers());
      }
 
      deleteAll() {
