@@ -1,121 +1,136 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-email.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-phone.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/avatars/jha-avatar.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-delete.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-edit.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-save.html">
 
 <dom-module id="user-profile">
   <template>
     <style>
+       @import url('https://fonts.googleapis.com/css?family=Poppins');
+
       table {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background: #eef1f4;
-        border-radius: 3px;
-        padding: 30px;
-        margin-top: 10px;
         width: 400px;
+        padding-left: 10px;
+        display: contents;
       }
+
+      td {
+        padding-left: 20px;
+        font-size: 18px;
+        vertical-align: bottom;
+      }
+
       button {
-        background-color: DarkSlateBlue;
+        background-color: indigo;
         color: #fcfcff;
         border-radius: 3px;
         text-align: center;
         padding: 12px;
         margin-top: 20px;
         font-size: 12px;
+        margin-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 100px;
       }
+
+      button:hover {
+        opacity: 0.9;
+        transition: all 0.3s ease;
+      }
+
       label {
-        margin-top: 25px;
         padding-right: 5px;
+        margin-top: 15px;
+        padding-top: 10px;
       }
+
       input {
         font-size: 18px;
         border: 0;
         border-bottom: 1px solid indigo;
         background: transparent;
-      }  
-      .add-button {
-        background-color: #fca902;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        padding: 20px;
-        margin-top: 0px;
-        font-size: 18px;
-        padding-right: 40px;
-        padding-left: 40px;
+        margin-top: 5px;
+        padding-top: 10px;
       }
-      template {
-        display: flex;
-        justify-content: center;
+
+      .delete {
+        background-color: #d1250ee3;
       }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
         <tr>
-          <td><label for="firstName">First name :</label></td>
-          <td><input type="text" name="firstName" id="firstName" value="{{user.firstName}}" on-input="updateUserFirstName"></td>
+          <td><label for="firstName">First name </label></td>
+          <td><input type="text" name="firstName" id="firstName" value="{{user.firstName::input}}"></td>
         </tr>
         <tr>
-          <td><label for="lastName">Last name :</label></td>
-          <td><input type="text" name="lastName" id="lastName" value="{{user.lastName}}" on-input="updateUserLastName"></td>
+          <td><label for="lastName">Last name </label></td>
+          <td><input type="text" name="lastName" id="lastName" value="{{user.lastName::input}}"></td>
         </tr>
         <tr>
-          <td><label for="phone">Phone :</label></td>
-          <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber}}" on-input="updateUserPhoneNumber"></td>
+          <td><label for="phone">Phone </label></td>
+          <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber::input}}"></td>
         </tr>
         <tr>
-          <td><label for="email">Email :</label></td>
-          <td><input type="text" name="email" id="email" value="{{user.email}}" on-input="updateUserEmail"></td>
-        </tr>
-        <tr>
-          <td><button type="button" on-click="newProfile">[[changeButtonText(addUserSelected)]]</button></td>
+          <td><label for="email">Email </label></td>
+          <td><input type="text" name="email" id="email" value="{{user.email::input}}"></td>
         </tr>
       </table>
+      <button type="button" on-click="newProfile">[[changeButtonText(addUserSelected)]] <jha-icon-save style="height: 16px; width: 16px; vertical-align: text-bottom; padding-left: 5px; fill:#fcfcff;"></jha-icon-save></button>
     </template>
     <template is="dom-if" if="[[isPopulated]]">
-        <table>
+      <jha-avatar style="padding-bottom: 10px; height: 48px; width: 48px;">
+        <img src="../assets/img/space.jpg" alt="[[user.firstName]] [[user.lastName]]">
+      </jha-avatar>
+      <table>
+        <tr>
+          <td>ID </td>
+          <td>[[user.id]]</td>
+        </tr>
+        <tr>
+          <td>Name </td>
+          <td>[[user.firstName]] [[user.lastName]]</td>
+        </tr>
+        <template is="dom-if" if="[[isExpanded]]">
           <tr>
-            <td>ID:</td>
-            <td>[[user.id]]</td>
+            <td><jha-icon-phone></jha-icon-phone></td>
+            <td>[[user.phoneNumber]]</td>
           </tr>
           <tr>
-            <td>Name:</td>
-            <td>[[user.firstName]] [[user.lastName]]</td>
+            <td><jha-icon-email></jha-icon-email></td>
+            <td>[[user.email]]</td>
           </tr>
-          <template is="dom-if" if="[[isExpanded]]">
-            <tr>
-              <td>Phone:</td>
-              <td>[[user.phoneNumber]]</td>
-            </tr>
-            <tr>
-              <td>Email:</td>
-              <td>[[user.email]]</td>
-            </tr>
-          </template>
-          <tr>
-            <td><button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button></td>
-            <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
-          </tr>
-        </table>
+        </template>
+      </table>
+      <button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button>
+      <button type="button" on-click="enterEditUserProfile">[[editButtonText(editSelected)]]<jha-icon-edit style="height: 16px; width: 16px; vertical-align: text-bottom; padding-left: 5px; fill:#fcfcff;"></jha-icon-edit></button>
+      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
     </template>
     <template is="dom-if" if="[[editSelected]]">
         <table>
           <tr>
-            <td><label for="firstName">First name :</label></td>
-            <td><input type="text" name="firstName" id="firstName" value="{{user.firstName}}" on-input="updateUserFirstName"></td>
+            <td><label for="firstName">First name </label></td>
+            <td><input type="text" name="firstName" id="firstName" value="{{user.firstName::input}}"></td>
           </tr>
           <tr>
-            <td><label for="lastName">Last name :</label></td>
-            <td><input type="text" name="lastName" id="lastName" value="{{user.lastName}}" on-input="updateUserLastName"></td>
+            <td><label for="lastName">Last name </label></td>
+            <td><input type="text" name="lastName" id="lastName" value="{{user.lastName::input}}"></td>
           </tr>
           <tr>
-            <td><label for="phone">Phone :</label></td>
-            <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber}}" on-input="updateUserPhoneNumber"></td>
+            <td><label for="phone">Phone </label></td>
+            <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber::input}}"></td>
           </tr>
           <tr>
-            <td><label for="email">Email :</label></td>
-            <td><input type="text" name="email" id="email" value="{{user.email}}" on-input="updateUserEmail"></td>
-          </tr>
-          <tr>
-            <td><button type="button" on-click="editUserProfile">[[editButtonText(editSelected)]]</button></td>
+            <td><label for="email">Email </label></td>
+            <td><input type="text" name="email" id="email" value="{{user.email::input}}"></td>
           </tr>
         </table>
+        <button type="button" on-click="editUserProfile" indexed$=[[user.id]]>[[editButtonText(editSelected)]]</button>
     </template>
   </template>
   <script type="module">
@@ -129,6 +144,9 @@
             type: Boolean,
             value: true
           },
+          localStorageClass: {
+            type: Object,
+         },
           editSelected: {
             type: Boolean,
             value: false
@@ -168,12 +186,34 @@
           email: ''
         };
       }
-      
+
+      editUserProfile(event) {
+        const userId = event.target.getAttribute('indexed');
+        this.localStorageClass.updateUser(userId, this.user);
+        this.dispatchEvent(new CustomEvent("updateUsers", {
+          bubbles: true,
+          composed: true,
+          detail: this.user
+        }));
+        this.editSelected = !this.editSelected;
+        this.isPopulated = !this.isPopulated;
+      }
+
+      deleteUserProfile(event) {
+        const userId = event.target.getAttribute('indexed');
+        this.localStorageClass.deleteUser(userId);
+        this.dispatchEvent(new CustomEvent("updateUsers", {
+          bubbles: true,
+          composed: true,
+          detail:  this.user 
+        }));
+      }
+
       cardExpandCollapse(event) {
         this.isExpanded = !this.isExpanded;
       }
 
-      editUserProfile(event) {
+      enterEditUserProfile(event) {
         this.editSelected = !this.editSelected;
         this.isPopulated = !this.isPopulated;
       }
@@ -183,27 +223,11 @@
       }
 
       editButtonText(editSelected) {
-        return editSelected ? `Save` : `Edit`;
+        return editSelected ? `Save` : `Edit `;
       }
 
       changeButtonText(addUserSelected) {
-        return addUserSelected ? `Save` : `Create User` ;
-      }
-
-      updateUserFirstName(event) {
-        this.set('user.firstName', event.target.value);
-      }
-
-      updateUserLastName(event) {
-        this.set('user.lastName', event.target.value);
-      }
-
-      updateUserPhoneNumber(event) {
-        this.set('user.phoneNumber', event.target.value);
-      }
-
-      updateUserEmail(event) {
-        this.set('user.email', event.target.value);
+        return addUserSelected ? `Save` : `Create User`;
       }
     }
     customElements.define(UserProfile.is, UserProfile);
