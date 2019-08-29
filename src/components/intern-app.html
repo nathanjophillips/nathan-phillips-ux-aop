@@ -162,7 +162,7 @@
 
      deleteAll() {
        if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', this.deleteUsers());
+         this.set('userProfiles', this.localStorageClass.deleteUsers());
        }
      }
 
