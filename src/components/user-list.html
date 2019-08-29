@@ -1,5 +1,7 @@
 <link rel="import" href="~@banno/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="./user-profile.html">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
 <dom-module id="user-list">
   <template>
@@ -12,6 +14,12 @@
         margin-top: 15px;
         width: 400px;
         display: block;
+      }
+      @media (max-width: 600px) {
+        user-profile {
+          width: 200px;
+          margin-top: 10px;
+        }
       }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">

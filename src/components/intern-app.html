@@ -2,6 +2,7 @@
 <link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
 <link rel="import" href="./user-list.html">
 <link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-add.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-line-add.html">
 <link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-person-add.html">
 
 <dom-module id="intern-app">
@@ -12,87 +13,84 @@
       padding: 12px 20px;
       margin: 0px;
     }
-  
+    jha-icon-person-add,  jha-icon-delete, jha-icon-add, jha-icon-line-add {
+      fill: #fcfcff;  
+      display: -webkit-inline-box;
+      vertical-align: text-bottom; 
+      padding-left: 13px;
+      height: 16px; 
+      width: 16px; 
+    }
+    jha-icon-person-add {
+      height: 24px;
+      width: 24px;
+    }
+    .add-button, .delete-all-button, .collapse-all-button {
+      color: #fcfcff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .add-button {
+      background-color: #fca902;
+      font-size: 20px;
+      font-weight: 400;
+      text-align: center;
+      border-radius: 4px;
+      padding: 18px 30px 18px 30px;
+      margin: 15px;
+    }
+    .delete-all-button, .collapse-all-button {
+      position: fixed;
+      font-size: 12px;
+      text-align: center;
+      border-radius: 4px;
+      width: 175px;
+      padding: 10px 20px 10px 20px;
+    }
+    .delete-all-button {
+      background-color: #d1250ee3;
+      top: 90%;
+      right: 3%;
+    }
+    .collapse-all-button {
+      background-color: indigo;
+      top: 81%;
+      right: 3%;
+    }
+    .add-button:hover, .delete-all-button:hover, .collapse-all-button:hover  {
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
     .expand {
       display: table-row;
       transition: all 0.3s ease;
     }
-  
     .collapse {
       display: none;
       transition: all 0.3s ease;
     }
-  
-    .add-button {
-      background-color: #fca902;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      padding: 18px;
-      font-size: 20px;
-      padding-right: 30px;
-      padding-left: 30px;
-      text-align: center;
-      margin: 15px;
-      border-radius: 4px;
-      font-weight: 400;
-      color: #fcfcff;
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+      .add-button {
+        padding: 8px;
+        font-size: 14px;
+        padding-right: 20px;
+        padding-left: 20px;
+        margin: 10px;
+      }
     }
-    
-    .add-button:hover {
-      opacity: 0.9;
-      transition: all 0.3s ease;
-    }
-  
-    .delete-all-button {
-      position: fixed;
-      top: 90%;
-      right: 2%;
-      width: 150px;
-      background-color: #d1250ee3;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      color: #fcfcff;
-      border-radius: 4px;
-      text-align: center;
-      padding: 12px;
-      margin-top: 20px;
-      font-size: 12px;
-    }
-
-    .delete-all-button:hover {
-      opacity: 0.9;
-      transition: all 0.3s ease;
-    }
-
-    .collapse-all-button {
-      position: fixed;
-      top: 83%;
-      right: 2%;
-      width: 150px;
-      background-color: indigo;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      color: #fcfcff;
-      border-radius: 4px;
-      text-align: center;
-      padding: 12px;
-      margin-top: 20px;
-      font-size: 12px;
-    }
-
-    .collapse-all-button:hover {
-      opacity: 0.9;
-      transition: all 0.3s ease;
-    }
-    
   </style>
    <header>
      <h1>Intern App</h1>
    </header>
    <template is="dom-if" if="[[!addUserSelected]]">
-     <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add style="fill:#fcfcff; display: -webkit-inline-box;
-      vertical-align: text-bottom; padding-left: 13px;"></jha-icon-person-add></button>
+     <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add></jha-icon-person-add></button>
    </template>
    <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" local-storage-class="[[localStorageClass]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
-      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
+      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users<jha-icon-delete></jha-icon-delete></button>
+      <button class="collapse-all-button" type="button" on-click="collapseAll">Collapse All Users<jha-icon-add></jha-icon-add></button>
    </template>
  </template>
  <script type="module">
@@ -154,8 +152,8 @@
 
      editUser(event) {
       this.set('userProfiles', this.localStorageClass.getUsers());
-     
      }
+
      deleteAll() {
        if (window.confirm("Are you sure you want to delete all users?")) {
          this.set('userProfiles', this.deleteUsers());
