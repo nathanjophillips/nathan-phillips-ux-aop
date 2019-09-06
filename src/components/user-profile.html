@@ -14,8 +14,7 @@
     <style>
       table {
         width: 400px;
-        padding-left: 10px;
-        display: contents;
+        padding-left: 10px;  
       }
       td {
         padding-left: 20px;
@@ -63,19 +62,8 @@
         height: 48px; 
         width: 48px;
       }
-      jha-icon-arrow-back {
-        fill:#262627;
-        height: 24px; 
-        width: 24px; 
-      }
       .delete {
         background-color: #d1250ee3;
-      }
-      .backArrow {
-        background-color: transparent;
-        border: none;
-        margin: 0px;
-        padding: 0px;
       }
       @media (max-width: 600px) {
         table {
@@ -93,12 +81,12 @@
           color: #fcfcff;
           border-radius: 3px;
           text-align: center;
-          padding: 12px;
+          padding: 8px;
           margin-top: 10px;
           font-size: 9px;
           margin-left: 10px;
           margin-right: 10px;
-          width: 150px;
+          width: 110px;
         }
         .save {
           display: none;
@@ -108,26 +96,23 @@
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
         <tr>
-          <td><button class="backArrow" type="button" on-click="backArrow"><jha-icon-arrow-back></jha-icon-arrow-back></button></td>
-        </tr>
-        <tr>
           <td><label for="firstName">First name</label></td>
           <td><input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
         </tr>
         <tr>
           <td><label for="lastName">Last name</label></td>
-          <td><input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
+          <td><input aria-label="input" type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
         </tr>
         <tr>
           <td><label for="phone">Phone</label></td>
-          <td><input type="text" id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
+          <td><input aria-label="input" type="text" id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
         </tr>
         <tr>
           <td><label for="email">Email</label></td>
-          <td><input type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
+          <td><input aria-label="input" type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
         </tr>
       </table>
-      <button type="button" on-click="newProfile"><label class="save">Save</label><jha-icon-save></jha-icon-save></button>
+      <button type="button" on-click="newProfile"><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
     </template>
     <template is="dom-if" if="[[isPopulated]]">
       <jha-avatar>
@@ -142,44 +127,41 @@
           <td>Name </td>
           <td>[[user.firstName]][[user.lastName]]</td>
         </tr>
-        <template is="dom-if" if="[[isExpanded]]">
+        <template class="expanded" is="dom-if" if="[[isExpanded]]">
           <tr>
-            <td><jha-icon-phone></jha-icon-phone></td>
+            <td><jha-icon-phone aria-hidden="true"></jha-icon-phone></td>
             <td>[[user.phoneNumber]]</td>
           </tr>
           <tr>
-            <td><jha-icon-email></jha-icon-email></td>
+            <td><jha-icon-email aria-hidden="true"></jha-icon-email></td>
             <td>[[user.email]]</td>
           </tr>
         </template>
       </table>
-      <button type="button" on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]<jha-icon-visibility></jha-icon-visibility></button>
-      <button type="button" on-click="enterEditUserProfile">Edit<jha-icon-edit></jha-icon-edit></button>
-      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete<jha-icon-delete></jha-icon-delete></button>
+      <button type="button" on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]<jha-icon-visibility aria-hidden="true"></jha-icon-visibility></button>
+      <button type="button" on-click="enterEditUserProfile">Edit<jha-icon-edit aria-hidden="true"></jha-icon-edit></button>
+      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete<jha-icon-delete aria-hidden="true"></jha-icon-delete></button>
     </template>
     <template is="dom-if" if="[[editSelected]]">
       <table>
         <tr>
-          <td><button class="backArrow" type="button" on-click="backArrow"><jha-icon-arrow-back></jha-icon-arrow-back></button></td>
-        </tr>
-        <tr>
           <td><label for="firstName">First name</label></td>
-          <td><input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
+          <td><input aria-label="input" type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
         </tr>
         <tr>
           <td><label for="lastName">Last name</label></td>
-          <td><input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
+          <td><input aria-label="input" type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
         </tr>
         <tr>
           <td><label for="phone">Phone</label></td>
-          <td><input type="text"  id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
+          <td><input aria-label="input" type="text"  id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
         </tr>
         <tr>
           <td><label for="email">Email</label></td>
-          <td><input type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
+          <td><input aria-label="input" type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
         </tr>
       </table>
-      <button type="button" on-click="editUserProfile" indexed$=[[user.id]]><label class="save">Save</label><jha-icon-save></jha-icon-save></button>
+      <button type="button" on-click="editUserProfile" indexed$=[[user.id]]><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
     </template>
   </template>
   <script type="module">
