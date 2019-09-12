@@ -149,15 +149,15 @@
        window.removeEventListener("updateUsers", this.boundUpdateUsers);
      }
 
+     updateUsers(event) {
+      this.set('userProfiles', this.localStorageClass.getUsers());
+     }
+
      newUser(event) {
        const newUserProfile = event.detail;
        newUserProfile.id = this.localStorageClass.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        this.addUserSelected = false;
-     }
-
-     updateUsers(event) {
-      this.set('userProfiles', this.localStorageClass.getUsers());
      }
 
      deleteAll() {
