@@ -232,8 +232,8 @@
       }
 
       deleteUserProfile(event) {
-        const user = event.target.getAttribute('indexed');
-        this.localStorageClass.deleteUser(user);
+        const userId = event.target.getAttribute('indexed');
+        this.localStorageClass.deleteUser(userId);
         this.dispatchEvent(new CustomEvent("updateUsers", {
           bubbles: true,
           composed: true,
@@ -243,10 +243,6 @@
 
       cardExpandCollapse(event) {
         this.isExpanded = !this.isExpanded;
-      }
-
-      backArrow(event) {  
-        this.addUserSelected = !this.addUserSelected;
       }
 
       enterEditUserProfile(event) {
