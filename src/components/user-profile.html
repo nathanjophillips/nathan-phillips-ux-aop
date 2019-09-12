@@ -107,30 +107,30 @@
           </tr>
         </template>
       </table>
-      <button on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]</button>
-      <button type="button" on-click="enterEditUserProfile">[[editButtonText(editSelected)]]<jha-icon-edit style="height: 16px; width: 16px; vertical-align: text-bottom; padding-left: 5px; fill:#fcfcff;"></jha-icon-edit></button>
-      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
+      <button type="button" on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]<jha-icon-visibility aria-hidden="true"></jha-icon-visibility></button>
+      <button type="button" on-click="enterEditUserProfile">Edit<jha-icon-edit aria-hidden="true"></jha-icon-edit></button>
+      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete<jha-icon-delete aria-hidden="true"></jha-icon-delete></button>
     </template>
     <template is="dom-if" if="[[editSelected]]">
-        <table>
-          <tr>
-            <td><label for="firstName">First name </label></td>
-            <td><input type="text" name="firstName" id="firstName" value="{{user.firstName::input}}"></td>
-          </tr>
-          <tr>
-            <td><label for="lastName">Last name </label></td>
-            <td><input type="text" name="lastName" id="lastName" value="{{user.lastName::input}}"></td>
-          </tr>
-          <tr>
-            <td><label for="phone">Phone </label></td>
-            <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber::input}}"></td>
-          </tr>
-          <tr>
-            <td><label for="email">Email </label></td>
-            <td><input type="text" name="email" id="email" value="{{user.email::input}}"></td>
-          </tr>
-        </table>
-        <button type="button" on-click="editUserProfile" indexed$=[[user.id]]>[[editButtonText(editSelected)]]</button>
+      <table>
+        <tr>
+          <td><label for="firstName">First name</label></td>
+          <td><input aria-label="input" type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
+        </tr>
+        <tr>
+          <td><label for="lastName">Last name</label></td>
+          <td><input aria-label="input" type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
+        </tr>
+        <tr>
+          <td><label for="phone">Phone</label></td>
+          <td><input aria-label="input" type="text"  id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
+        </tr>
+        <tr>
+          <td><label for="email">Email</label></td>
+          <td><input aria-label="input" type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
+        </tr>
+      </table>
+      <button type="button" on-click="editUserProfile" indexed$=[[user.id]]><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
     </template>
   </template>
   <script type="module">
