@@ -88,8 +88,8 @@
           margin-right: 10px;
           width: 110px;
         }
-        .save {
-          display: none;
+        input {
+          font-size: 5px;
         }
       }
     </style>
@@ -112,7 +112,7 @@
           <td><input type="email" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
         </tr>
       </table>
-      <button type="button" on-click="newProfile"><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
+      <button type="button" on-click="newProfile"><label>Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
     </template>
     <template is="dom-if" if="[[isPopulated]]">
       <jha-avatar>
