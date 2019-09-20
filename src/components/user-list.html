@@ -23,13 +23,13 @@
     <template is="dom-if" if="[[addUserSelected]]">
       <user-profile 
         add-user-selected="[[addUserSelected]]"
-        local-storage-class="[[localStorageClass]]">
+        local-storage-class="[[firebaseApi]]">
       </user-profile>
     </template>
     <template is="dom-repeat" items="[[userProfiles]]">
       <user-profile
         user="[[item]]"
-        local-storage-class="[[localStorageClass]]"
+        local-storage-class="[[firebaseApi]]"
         is-populated>
       </user-profile>
     </template>
@@ -44,7 +44,7 @@
           userProfiles: {
             type: Array,
           },
-          localStorageClass: {
+          firebaseApi: {
             type: Object,
          },
           addUserSelected: {

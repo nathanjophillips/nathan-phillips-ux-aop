@@ -78,15 +78,30 @@
    <template is="dom-if" if="[[!addUserSelected]]">
      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add></jha-icon-person-add></button>
    </template>
-   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" local-storage-class="[[localStorageClass]]"></user-list>
+   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" local-storage-class="[[firebaseApi]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
       <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users<jha-icon-delete></jha-icon-delete></button>
    </template>
  </template>
  <script type="module">
-   'use strict';
-   import localStorageApi from "../api/local-storage.js";
-   
+  'use strict';
+  import firebase from "firebase/app";
+  import "firebase/database";
+  import firebaseApi from "../api/firebase-api.js";
+  // import localStorageApi from "../api/local-storage.js";
+  
+   // Initialize Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyAF2m66MvU-JyOkS4Q7u4YH10Vf30zT2tU",
+    authDomain: "apprentice-onboarding-project.firebaseapp.com",
+    databaseURL: "https://apprentice-onboarding-project.firebaseio.com",
+    projectId: "apprentice-onboarding-project",
+    storageBucket: "",
+    messagingSenderId: "345149786368",
+    appId: "1:345149786368:web:ff2602b484e176aa"
+  };
+  firebase.initializeApp(firebaseConfig);
+
    class InternApp extends Polymer.Element {
      static get is() { return 'intern-app'; }
 
@@ -94,11 +109,7 @@
        return {
          userProfiles: {
            type: Array,
-           value: () => localStorageApi.getUsers()
-         },
-         localStorageClass: {
-           type: Object,
-           value: () => localStorageApi
+           value: () => firebaseApi.getUsers()
          },
          addUserSelected: {
            type: Boolean,
@@ -123,6 +134,7 @@
        super();
        this.boundNewUser = this.newUser.bind(this);
        this.boundUpdateUsers = this.updateUsers.bind(this);
+       firebaseApi.getUsers();
      }
 
      connectedCallback() {
@@ -138,25 +150,25 @@
      }
 
      updateUsers(event) {
-      this.set('userProfiles', this.localStorageClass.getUsers());
+      this.set('userProfiles', this.firebaseApi.getUsers());
      }
 
      newUser(event) {
        const newUserProfile = event.detail;
-       newUserProfile.id = this.localStorageClass.genId();
+       newUserProfile.id = this.firebaseApi.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        this.addUserSelected = false;
      }
 
      deleteAll() {
        if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', this.localStorageClass.deleteUsers());
+         this.set('userProfiles', this.firebaseApi.deleteUsers());
        }
      }
 
      pushToArray(userProfiles, newUserProfile) {
-       if (this.localStorageClass.validateUser(newUserProfile)) {
-         this.localStorageClass.createUser(newUserProfile);
+       if (this.firebaseApi.validateUser(newUserProfile)) {
+         this.firebaseApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
        }
      }

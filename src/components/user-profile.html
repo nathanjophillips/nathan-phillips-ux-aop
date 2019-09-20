@@ -183,7 +183,7 @@
               };
             }
           },
-          localStorageClass: {
+          firebaseApi: {
             type: Object,
          },
           isExpanded: {
@@ -221,7 +221,7 @@
 
       editUserProfile(event) {
         const userId = event.target.getAttribute('indexed');
-        this.localStorageClass.updateUser(userId, this.user);
+        this.firebaseApi.updateUser(userId, this.user);
         this.dispatchEvent(new CustomEvent("updateUsers", {
           bubbles: true,
           composed: true,
@@ -233,7 +233,7 @@
 
       deleteUserProfile(event) {
         const userId = event.target.getAttribute('indexed');
-        this.localStorageClass.deleteUser(userId);
+        this.firebaseApi.deleteUser(userId);
         this.dispatchEvent(new CustomEvent("updateUsers", {
           bubbles: true,
           composed: true,
