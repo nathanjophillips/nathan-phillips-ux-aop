@@ -13,7 +13,8 @@
   <template>
     <style>
       table {
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
         padding-left: 10px;  
       }
       td {
@@ -67,29 +68,26 @@
       }
       @media (max-width: 600px) {
         table {
-          width: 350px;
+          max-width: 350px;
           padding-left: 5px;
           display: contents;
         }
         td {
-          padding-left: 15px;
-          font-size: 18px;
-          vertical-align: bottom;
+          padding-left: 10px;
+          font-size: 17px;
         }
         button {
-          background-color: indigo;
-          color: #fcfcff;
-          border-radius: 3px;
-          text-align: center;
+          display:list-item;
           padding: 8px;
-          margin-top: 7px;
+          margin-top: 16px;
+          margin-bottom: 2px;
           font-size: 14px;
           margin-left: 10px;
           margin-right: 10px;
-          width: 180px;
+          width: 140px;
         }
         input {
-          font-size: 18px;
+          font-size: 17px;
         }
       }
     </style>
@@ -125,7 +123,7 @@
         </tr>
         <tr>
           <td>Name </td>
-          <td>[[user.firstName]][[user.lastName]]</td>
+          <td>[[user.firstName]] [[user.lastName]]</td>
         </tr>
         <template class="expanded" is="dom-if" if="[[isExpanded]]">
           <tr>
