@@ -11,85 +11,100 @@
 
 <dom-module id="user-profile">
   <template>
-    <style>
+  <style>
+    table {
+      width: 100%;
+      max-width: 400px;
+      padding-left: 10px;
+    }
+  
+    td {
+      padding-left: 20px;
+      font-size: 18px;
+      vertical-align: bottom;
+    }
+  
+    button {
+      color: #fcfcff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-color: indigo;
+      font-size: 12px;
+      border-radius: 3px;
+      border: none;
+      text-align: center;
+      padding: 10px;
+      margin: 30px 10px 10px 0px;
+      width: 115px;
+    }
+  
+    button:hover {
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+  
+    label {
+      padding-right: 5px;
+      margin-top: 15px;
+      padding-top: 10px;
+    }
+  
+    input {
+      font-size: 18px;
+      border: 0;
+      border-bottom: 1px solid indigo;
+      background: transparent;
+      margin-top: 5px;
+      padding-top: 10px;
+    }
+  
+    jha-icon-delete,
+    jha-icon-edit,
+    jha-icon-save,
+    jha-icon-visibility {
+      fill: #fcfcff;
+      height: 16px;
+      width: 16px;
+      vertical-align: text-bottom;
+      padding-left: 5px;
+    }
+  
+    jha-avatar {
+      padding-bottom: 10px;
+      height: 48px;
+      width: 48px;
+    }
+  
+    .delete {
+      background-color: #d1250ee3;
+    }
+  
+    @media (max-width: 600px) {
       table {
-        width: 100%;
-        max-width: 400px;
-        padding-left: 10px;  
+        max-width: 350px;
+        padding-left: 5px;
+        display: contents;
       }
+  
       td {
-        padding-left: 20px;
-        font-size: 18px;
-        vertical-align: bottom;
+        padding-left: 10px;
+        font-size: 17px;
       }
+  
       button {
-        color: #fcfcff;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background-color: indigo;
-        font-size: 12px;
-        border-radius: 3px;
-        border: none;
-        text-align: center;
-        padding: 10px;
-        margin: 30px 10px 10px 0px;
-        width: 115px;
+        display: list-item;
+        padding: 8px;
+        margin-top: 16px;
+        margin-bottom: 2px;
+        font-size: 14px;
+        margin-left: 10px;
+        margin-right: 10px;
+        width: 140px;
       }
-      button:hover {
-        opacity: 0.9;
-        transition: all 0.3s ease;
-      }
-      label {
-        padding-right: 5px;
-        margin-top: 15px;
-        padding-top: 10px;
-      }
+  
       input {
-        font-size: 18px;
-        border: 0;
-        border-bottom: 1px solid indigo;
-        background: transparent;
-        margin-top: 5px;
-        padding-top: 10px;
+        font-size: 17px;
       }
-      jha-icon-delete, jha-icon-edit, jha-icon-save, jha-icon-visibility {
-        fill:#fcfcff;
-        height: 16px; 
-        width: 16px; 
-        vertical-align: text-bottom; 
-        padding-left: 5px; 
-      }
-      jha-avatar {
-        padding-bottom: 10px; 
-        height: 48px; 
-        width: 48px;
-      }
-      .delete {
-        background-color: #d1250ee3;
-      }
-      @media (max-width: 600px) {
-        table {
-          max-width: 350px;
-          padding-left: 5px;
-          display: contents;
-        }
-        td {
-          padding-left: 10px;
-          font-size: 17px;
-        }
-        button {
-          display:list-item;
-          padding: 8px;
-          margin-top: 16px;
-          margin-bottom: 2px;
-          font-size: 14px;
-          margin-left: 10px;
-          margin-right: 10px;
-          width: 140px;
-        }
-        input {
-          font-size: 17px;
-        }
-      }
+    }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
@@ -183,7 +198,7 @@
           },
           localStorageClass: {
             type: Object,
-         },
+          },
           isExpanded: {
             type: Boolean,
             value: true
@@ -192,7 +207,6 @@
             type: Boolean,
             value: false
           },
-          
           addUserSelected: {
             type: Boolean,
           },

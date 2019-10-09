@@ -3,58 +3,59 @@
 
 <dom-module id="user-list">
   <template>
-    <style>
+  <style>
+    user-profile {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background: #eef1f4;
+      border-radius: 3px;
+      padding: 18px;
+      margin-top: 15px;
+      display: block;
+    }
+  
+    @media (max-width: 600px) {
       user-profile {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        background: #eef1f4;
-        border-radius: 3px;
-        padding: 18px;
-        margin-top: 15px;
-        display: block;
+        margin-top: 13px;
       }
-      @media (max-width: 600px) {
-        user-profile {
-          margin-top: 13px;
-        }
-      }
-    </style>
-    <template is="dom-if" if="[[addUserSelected]]">
-      <user-profile 
-        add-user-selected="[[addUserSelected]]"
-        local-storage-class="[[localStorageClass]]">
-      </user-profile>
-    </template>
-    <template is="dom-repeat" items="[[userProfiles]]">
-      <user-profile
-        user="[[item]]"
-        local-storage-class="[[localStorageClass]]"
-        is-populated>
-      </user-profile>
-    </template>
+    }
+  </style>
+  <template is="dom-if" if="[[addUserSelected]]">
+    <user-profile 
+      add-user-selected="[[addUserSelected]]" 
+      local-storage-class="[[localStorageClass]]">
+    </user-profile>
   </template>
-  <script type="module">
-    'use strict'
-    class UserList extends Polymer.Element {
-      static get is() { return 'user-list'; }
+  <template is="dom-repeat" items="[[userProfiles]]">
+    <user-profile
+      user="[[item]]"
+      local-storage-class="[[localStorageClass]]"
+      is-populated>
+    </user-profile>
+  </template>
+</template>
+<script type="module">
+  'use strict'
+  class UserList extends Polymer.Element {
+    static get is() { return 'user-list'; }
 
-      static get properties() {
-        return {
-          userProfiles: {
-            type: Array,
-          },
-          localStorageClass: {
-            type: Object,
-         },
-          addUserSelected: {
-            type: Boolean,
-          },
-          isPopulated: {
-            type: Boolean,
-          }
+    static get properties() {
+      return {
+        userProfiles: {
+          type: Array,
+        },
+        localStorageClass: {
+          type: Object,
+        },
+        addUserSelected: {
+          type: Boolean,
+        },
+        isPopulated: {
+          type: Boolean,
         }
       }
     }
-    customElements.define(UserList.is, UserList);
-    export default UserList;
-  </script>
+  }
+  customElements.define(UserList.is, UserList);
+  export default UserList;
+</script>
 </dom-module>
