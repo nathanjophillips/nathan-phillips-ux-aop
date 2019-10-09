@@ -1,11 +1,10 @@
 <link rel="import" href="~@banno/polymer/polymer-element.html">
 <link rel="import" href="~@banno/polymer/lib/elements/dom-if.html">
 <link rel="import" href="./user-list.html">
-<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-add.html">
 <link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-person-add.html">
 
 <dom-module id="intern-app">
- <template>
+<template>
   <style>
     h1 {
       font-size: 45px;
@@ -13,175 +12,178 @@
       margin: 0px;
     }
   
-    .expand {
-      display: table-row;
-      transition: all 0.3s ease;
+    jha-icon-person-add,
+    jha-icon-delete,
+    jha-icon-add,
+    jha-icon-line-add {
+      fill: #fcfcff;
+      display: -webkit-inline-box;
+      vertical-align: text-bottom;
+      padding-left: 13px;
+      height: 16px;
+      width: 16px;
     }
   
-    .collapse {
-      display: none;
-      transition: all 0.3s ease;
+    jha-icon-person-add {
+      height: 24px;
+      width: 24px;
+    }
+  
+    .add-button,
+    .delete-all-button {
+      color: #fcfcff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
   
     .add-button {
       background-color: #fca902;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      padding: 18px;
       font-size: 20px;
-      padding-right: 30px;
-      padding-left: 30px;
-      text-align: center;
-      margin: 15px;
-      border-radius: 4px;
       font-weight: 400;
-      color: #fcfcff;
-    }
-    
-    .add-button:hover {
-      opacity: 0.9;
-      transition: all 0.3s ease;
+      text-align: center;
+      border-radius: 4px;
+      padding: 18px 30px 18px 30px;
+      margin: 15px;
     }
   
     .delete-all-button {
       position: fixed;
-      top: 90%;
-      right: 2%;
-      width: 150px;
-      background-color: #d1250ee3;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      color: #fcfcff;
-      border-radius: 4px;
-      text-align: center;
-      padding: 12px;
-      margin-top: 20px;
       font-size: 12px;
+      text-align: center;
+      border: none;
+      border-radius: 4px;
+      width: 175px;
+      padding: 15px 20px 15px 20px;
+      margin: 15px;
     }
-
+  
+    .delete-all-button {
+      background-color: #d1250ee3;
+      top: 90%;
+      right: 1%;
+    }
+  
+    .add-button:hover,
     .delete-all-button:hover {
       opacity: 0.9;
       transition: all 0.3s ease;
     }
-
-    .collapse-all-button {
-      position: fixed;
-      top: 83%;
-      right: 2%;
-      width: 150px;
-      background-color: indigo;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      color: #fcfcff;
-      border-radius: 4px;
-      text-align: center;
-      padding: 12px;
-      margin-top: 20px;
-      font-size: 12px;
+  
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 25px;
+      }
+  
+      .add-button {
+        padding: 12px;
+        font-size: 20px;
+        padding-right: 23px;
+        padding-left: 23px;
+        margin: 10px;
+      }
+  
+      .delete-all-button {
+        display: none;
+      }
     }
-
-    .collapse-all-button:hover {
-      opacity: 0.9;
-      transition: all 0.3s ease;
-    }
-    
   </style>
-   <header>
-     <h1>Intern App</h1>
-   </header>
-   <template is="dom-if" if="[[!addUserSelected]]">
-     <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add style="fill:#fcfcff; display: -webkit-inline-box;
-      vertical-align: text-bottom; padding-left: 13px;"></jha-icon-person-add></button>
-   </template>
-   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" local-storage-class="[[localStorageClass]]"></user-list>
-   <template is="dom-if" if="[[cardsPopulated]]">
-      <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users <jha-icon-delete style="height: 16px; width: 16px; vertical-align: text-bottom; fill:#fcfcff;"></jha-icon-delete></button>
-   </template>
+  <header>
+    <h1>Intern App</h1>
+  </header>
+  <template is="dom-if" if="[[!addUserSelected]]">
+    <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add></jha-icon-person-add></button>
+  </template>
+  <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" local-storage-class="[[localStorageClass]]"></user-list>
+  <template is="dom-if" if="[[cardsPopulated]]">
+    <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users<jha-icon-delete></jha-icon-delete></button>
+  </template>
  </template>
  <script type="module">
-   'use strict';
-   import localStorageApi from "../api/local-storage.js";
+  'use strict';
+  import localStorageApi from "../api/local-storage.js";
    
-   class InternApp extends Polymer.Element {
-     static get is() { return 'intern-app'; }
+  class InternApp extends Polymer.Element {
+    static get is() { return 'intern-app'; }
 
-     static get properties() {
-       return {
-         userProfiles: {
-           type: Array,
-           value: () => localStorageApi.getUsers()
-         },
-         localStorageClass: {
-           type: Object,
-           value: () => localStorageApi
-         },
-         addUserSelected: {
-           type: Boolean,
-           value: false
-         },
-         isExpanded: {
-           type: Boolean,
-           value: true
-         },
-         isPopulated: {
-           type: Boolean,
-           value: true
-         },
-         cardsPopulated: {
-           type: Boolean,
-           value: true
-         }
-       }
-     }
+    static get properties() {
+      return {
+        userProfiles: {
+          type: Array,
+          value: () => localStorageApi.getUsers()
+        },
+        localStorageClass: {
+          type: Object,
+          value: () => localStorageApi
+        },
+        addUserSelected: {
+          type: Boolean,
+          value: false
+        },
+        isExpanded: {
+          type: Boolean,
+          value: true
+        },
+        isPopulated: {
+          type: Boolean,
+          value: true
+        },
+        cardsPopulated: {
+          type: Boolean,
+          value: true
+        }
+      }
+    }
 
      constructor() {
-       super();
-       this.boundNewUser = this.newUser.bind(this);
-       this.boundUpdateUsers = this.updateUsers.bind(this);
-     }
+      super();
+      this.boundNewUser = this.newUser.bind(this);
+      this.boundUpdateUsers = this.updateUsers.bind(this);
+    }
 
-     connectedCallback() {
-       super.connectedCallback();
-       window.addEventListener("newUser", this.boundNewUser);
-       window.addEventListener("updateUsers", this.boundUpdateUsers);
-     }
+    connectedCallback() {
+      super.connectedCallback();
+      window.addEventListener("newUser", this.boundNewUser);
+      window.addEventListener("updateUsers", this.boundUpdateUsers);
+    }
 
-     disconnectedCallback() {
-       super.disconnectedCallback();
-       window.removeEventListener("newUser", this.boundNewUser);
-       window.removeEventListener("updateUsers", this.boundUpdateUsers);
-     }
+    disconnectedCallback() {
+      super.disconnectedCallback();
+      window.removeEventListener("newUser", this.boundNewUser);
+      window.removeEventListener("updateUsers", this.boundUpdateUsers);
+    }
 
-     updateUsers(event) {
+    updateUsers(event) {
       this.set('userProfiles', this.localStorageClass.getUsers());
-     }
+    }
 
-     newUser(event) {
-       const newUserProfile = event.detail;
-       newUserProfile.id = this.localStorageClass.genId();
-       this.pushToArray(this.userProfiles, newUserProfile);
-       this.addUserSelected = false;
-     }
+    newUser(event) {
+      const newUserProfile = event.detail;
+      newUserProfile.id = this.localStorageClass.genId();
+      this.pushToArray(this.userProfiles, newUserProfile);
+      this.addUserSelected = false;
+    }
 
-     deleteAll() {
-       if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', this.localStorageClass.deleteUsers());
-       }
-     }
+    deleteAll() {
+      if (window.confirm("Are you sure you want to delete all users?")) {
+        this.set('userProfiles', this.localStorageClass.deleteUsers());
+      }
+    }
 
-     pushToArray(userProfiles, newUserProfile) {
-       if (this.localStorageClass.validateUser(newUserProfile)) {
-         this.localStorageClass.createUser(newUserProfile);
-         this.push('userProfiles', newUserProfile);
-       }
-     }
+    pushToArray(userProfiles, newUserProfile) {
+      if (this.localStorageClass.validateUser(newUserProfile)) {
+        this.localStorageClass.createUser(newUserProfile);
+        this.push('userProfiles', newUserProfile);
+      }
+    }
 
-     createNewUserProfile(event) {
-       this.addUserSelected = !this.addUserSelected;
-     }
+    createNewUserProfile(event) {
+      this.addUserSelected = !this.addUserSelected;
+    }
 
-     changeButtonText(addUserSelected) {
-       return addUserSelected ? `Save` : `Create User `;
-     }
-   }
-   customElements.define(InternApp.is, InternApp);
-   export default InternApp;
- </script>
+    changeButtonText(addUserSelected) {
+      return addUserSelected ? `Save` : `Create User `;
+    }
+  }
+  customElements.define(InternApp.is, InternApp);
+  export default InternApp;
+</script>
 </dom-module>

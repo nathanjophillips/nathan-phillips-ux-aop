@@ -6,85 +6,129 @@
 <link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-delete.html">
 <link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-edit.html">
 <link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-save.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-arrow-back.html">
+<link rel="import" href="../../node_modules/@banno/jha-design-components/icons/jha-icon-visibility.html">
 
 <dom-module id="user-profile">
   <template>
-    <style>
-       @import url('https://fonts.googleapis.com/css?family=Poppins');
-
+  <style>
+    table {
+      width: 100%;
+      max-width: 400px;
+      padding-left: 10px;
+    }
+  
+    td {
+      padding-left: 20px;
+      font-size: 18px;
+      vertical-align: bottom;
+    }
+  
+    button {
+      color: #fcfcff;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      background-color: indigo;
+      font-size: 12px;
+      border-radius: 3px;
+      border: none;
+      text-align: center;
+      padding: 10px;
+      margin: 30px 10px 10px 0px;
+      width: 115px;
+    }
+  
+    button:hover {
+      opacity: 0.9;
+      transition: all 0.3s ease;
+    }
+  
+    label {
+      padding-right: 5px;
+      margin-top: 15px;
+      padding-top: 10px;
+    }
+  
+    input {
+      font-size: 18px;
+      border: 0;
+      border-bottom: 1px solid indigo;
+      background: transparent;
+      margin-top: 5px;
+      padding-top: 10px;
+    }
+  
+    jha-icon-delete,
+    jha-icon-edit,
+    jha-icon-save,
+    jha-icon-visibility {
+      fill: #fcfcff;
+      height: 16px;
+      width: 16px;
+      vertical-align: text-bottom;
+      padding-left: 5px;
+    }
+  
+    jha-avatar {
+      padding-bottom: 10px;
+      height: 48px;
+      width: 48px;
+    }
+  
+    .delete {
+      background-color: #d1250ee3;
+    }
+  
+    @media (max-width: 600px) {
       table {
-        width: 400px;
-        padding-left: 10px;
+        max-width: 350px;
+        padding-left: 5px;
         display: contents;
       }
-
+  
       td {
-        padding-left: 20px;
-        font-size: 18px;
-        vertical-align: bottom;
+        padding-left: 10px;
+        font-size: 17px;
       }
-
+  
       button {
-        background-color: indigo;
-        color: #fcfcff;
-        border-radius: 3px;
-        text-align: center;
-        padding: 12px;
-        margin-top: 20px;
-        font-size: 12px;
-        margin-top: 30px;
+        display: list-item;
+        padding: 8px;
+        margin-top: 16px;
+        margin-bottom: 2px;
+        font-size: 14px;
         margin-left: 10px;
         margin-right: 10px;
-        width: 100px;
+        width: 140px;
       }
-
-      button:hover {
-        opacity: 0.9;
-        transition: all 0.3s ease;
-      }
-
-      label {
-        padding-right: 5px;
-        margin-top: 15px;
-        padding-top: 10px;
-      }
-
+  
       input {
-        font-size: 18px;
-        border: 0;
-        border-bottom: 1px solid indigo;
-        background: transparent;
-        margin-top: 5px;
-        padding-top: 10px;
+        font-size: 17px;
       }
-
-      .delete {
-        background-color: #d1250ee3;
-      }
+    }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
         <tr>
-          <td><label for="firstName">First name </label></td>
-          <td><input type="text" name="firstName" id="firstName" value="{{user.firstName::input}}"></td>
+          <td><label for="firstName">First name</label></td>
+          <td><input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
         </tr>
         <tr>
-          <td><label for="lastName">Last name </label></td>
-          <td><input type="text" name="lastName" id="lastName" value="{{user.lastName::input}}"></td>
+          <td><label for="lastName">Last name</label></td>
+          <td><input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
         </tr>
         <tr>
-          <td><label for="phone">Phone </label></td>
-          <td><input type="text" name="phone" id="phone" value="{{user.phoneNumber::input}}"></td>
+          <td><label for="phone">Phone</label></td>
+          <td><input type="tel" id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
         </tr>
         <tr>
-          <td><label for="email">Email </label></td>
-          <td><input type="text" name="email" id="email" value="{{user.email::input}}"></td>
+          <td><label for="email">Email</label></td>
+          <td><input type="email" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
         </tr>
       </table>
-      <button type="button" on-click="newProfile">[[changeButtonText(addUserSelected)]] <jha-icon-save style="height: 16px; width: 16px; vertical-align: text-bottom; padding-left: 5px; fill:#fcfcff;"></jha-icon-save></button>
+      <button type="button" on-click="newProfile"><label>Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
     </template>
     <template is="dom-if" if="[[isPopulated]]">
-      <jha-avatar style="padding-bottom: 10px; height: 48px; width: 48px;">
+      <jha-avatar>
         <img src="../assets/img/space.jpg" alt="[[user.firstName]] [[user.lastName]]">
       </jha-avatar>
       <table>
@@ -96,13 +140,13 @@
           <td>Name </td>
           <td>[[user.firstName]] [[user.lastName]]</td>
         </tr>
-        <template is="dom-if" if="[[isExpanded]]">
+        <template class="expanded" is="dom-if" if="[[isExpanded]]">
           <tr>
-            <td><jha-icon-phone></jha-icon-phone></td>
+            <td><jha-icon-phone aria-hidden="true"></jha-icon-phone></td>
             <td>[[user.phoneNumber]]</td>
           </tr>
           <tr>
-            <td><jha-icon-email></jha-icon-email></td>
+            <td><jha-icon-email aria-hidden="true"></jha-icon-email></td>
             <td>[[user.email]]</td>
           </tr>
         </template>
@@ -115,19 +159,19 @@
       <table>
         <tr>
           <td><label for="firstName">First name</label></td>
-          <td><input aria-label="input" type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
+          <td><input type="text" id="firstName" name="firstName" placeholder="First Name" value="{{user.firstName::input}}"></td>
         </tr>
         <tr>
           <td><label for="lastName">Last name</label></td>
-          <td><input aria-label="input" type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
+          <td><input type="text" id="lastName" name="lastName" placeholder="Last Name" value="{{user.lastName::input}}"></td>
         </tr>
         <tr>
           <td><label for="phone">Phone</label></td>
-          <td><input aria-label="input" type="text"  id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
+          <td><input type="tel"  id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
         </tr>
         <tr>
           <td><label for="email">Email</label></td>
-          <td><input aria-label="input" type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
+          <td><input type="email" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
         </tr>
       </table>
       <button type="button" on-click="editUserProfile" indexed$=[[user.id]]><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
@@ -140,17 +184,6 @@
 
       static get properties() {
         return {
-          isExpanded: {
-            type: Boolean,
-            value: true
-          },
-          localStorageClass: {
-            type: Object,
-         },
-          editSelected: {
-            type: Boolean,
-            value: false
-          },
           user: {
             type: Object,
             value: function() {
@@ -162,6 +195,17 @@
                 email: ''
               };
             }
+          },
+          localStorageClass: {
+            type: Object,
+          },
+          isExpanded: {
+            type: Boolean,
+            value: true
+          },
+          editSelected: {
+            type: Boolean,
+            value: false
           },
           addUserSelected: {
             type: Boolean,
@@ -220,10 +264,6 @@
 
       collapseButtonText(isExpanded) {
         return isExpanded ? `Collapse` : `Expand`;
-      }
-
-      editButtonText(editSelected) {
-        return editSelected ? `Save` : `Edit `;
       }
 
       changeButtonText(addUserSelected) {
