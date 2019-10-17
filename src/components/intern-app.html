@@ -101,37 +101,37 @@
   };
   firebase.initializeApp(firebaseConfig);
 
-   class InternApp extends Polymer.Element {
-     static get is() { return 'intern-app'; }
+  class InternApp extends Polymer.Element {
+    static get is() { return 'intern-app'; }
 
-     static get properties() {
-       return {
-         userProfiles: {
-           type: Array,
-           value: () => firebaseApi.getUsers()
-         },
-         firebaseClass: {
-           type: Object,
-           value: () => firebaseApi.getUsers()
-         },
-         addUserSelected: {
-           type: Boolean,
-           value: false
-         },
-         isExpanded: {
-           type: Boolean,
-           value: true
-         },
-         isPopulated: {
-           type: Boolean,
-           value: true
-         },
-         cardsPopulated: {
-           type: Boolean,
-           value: true
-         }
-       }
-     }
+    static get properties() {
+      return {
+        userProfiles: {
+          type: Array,
+          value: () => firebaseApi.getUsers()
+        },
+        firebaseClass: {
+          type: Object,
+          value: () => firebaseApi
+        },
+        addUserSelected: {
+          type: Boolean,
+          value: false
+        },
+        isExpanded: {
+          type: Boolean,
+          value: true
+        },
+        isPopulated: {
+          type: Boolean,
+          value: true
+        },
+        cardsPopulated: {
+          type: Boolean,
+          value: true
+        }
+      }
+    }
 
      constructor() {
        super();
@@ -164,7 +164,7 @@
 
      deleteAll() {
        if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', firebaseApi.deleteUsers());
+         this.set('userProfiles', firebaseApi.deleteAll());
        }
      }
 
