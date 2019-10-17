@@ -14,13 +14,15 @@
     <style>
       table {
         width: 400px;
-        padding-left: 10px;  
+        padding-left: 10px;
       }
+
       td {
         padding-left: 20px;
         font-size: 18px;
         vertical-align: bottom;
       }
+
       button {
         color: #fcfcff;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -33,15 +35,18 @@
         margin: 30px 10px 10px 0px;
         width: 115px;
       }
+
       button:hover {
         opacity: 0.9;
         transition: all 0.3s ease;
       }
+
       label {
         padding-right: 5px;
         margin-top: 15px;
         padding-top: 10px;
       }
+
       input {
         font-size: 18px;
         border: 0;
@@ -50,32 +55,41 @@
         margin-top: 5px;
         padding-top: 10px;
       }
-      jha-icon-delete, jha-icon-edit, jha-icon-save, jha-icon-visibility {
-        fill:#fcfcff;
-        height: 16px; 
-        width: 16px; 
-        vertical-align: text-bottom; 
-        padding-left: 5px; 
+
+      jha-icon-delete,
+      jha-icon-edit,
+      jha-icon-save,
+      jha-icon-visibility {
+        fill: #fcfcff;
+        height: 16px;
+        width: 16px;
+        vertical-align: text-bottom;
+        padding-left: 5px;
       }
+
       jha-avatar {
-        padding-bottom: 10px; 
-        height: 48px; 
+        padding-bottom: 10px;
+        height: 48px;
         width: 48px;
       }
+
       .delete {
         background-color: #d1250ee3;
       }
+
       @media (max-width: 600px) {
         table {
           width: 200px;
           padding-left: 5px;
           display: contents;
         }
+
         td {
           padding-left: 10px;
           font-size: 11px;
           vertical-align: bottom;
         }
+
         button {
           background-color: indigo;
           color: #fcfcff;
@@ -88,6 +102,7 @@
           margin-right: 10px;
           width: 110px;
         }
+
         .save {
           display: none;
         }
@@ -129,18 +144,22 @@
         </tr>
         <template class="expanded" is="dom-if" if="[[isExpanded]]">
           <tr>
-            <td><jha-icon-phone aria-hidden="true"></jha-icon-phone></td>
+            <td>
+              <jha-icon-phone aria-hidden="true"></jha-icon-phone>
+            </td>
             <td>[[user.phoneNumber]]</td>
           </tr>
           <tr>
-            <td><jha-icon-email aria-hidden="true"></jha-icon-email></td>
+            <td>
+              <jha-icon-email aria-hidden="true"></jha-icon-email>
+            </td>
             <td>[[user.email]]</td>
           </tr>
         </template>
       </table>
       <button type="button" on-click="cardExpandCollapse">[[collapseButtonText(isExpanded)]]<jha-icon-visibility aria-hidden="true"></jha-icon-visibility></button>
       <button type="button" on-click="enterEditUserProfile">Edit<jha-icon-edit aria-hidden="true"></jha-icon-edit></button>
-      <button class="delete" type="button"  on-click="deleteUserProfile" indexed$=[[user.id]]>Delete<jha-icon-delete aria-hidden="true"></jha-icon-delete></button>
+      <button class="delete" type="button" on-click="deleteUserProfile" indexed$=[[user.id]]>Delete<jha-icon-delete aria-hidden="true"></jha-icon-delete></button>
     </template>
     <template is="dom-if" if="[[editSelected]]">
       <table>
@@ -154,14 +173,16 @@
         </tr>
         <tr>
           <td><label for="phone">Phone</label></td>
-          <td><input aria-label="input" type="text"  id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
+          <td><input aria-label="input" type="text" id="phone" name="phone" placeholder="(000)000-0000" value="{{user.phoneNumber::input}}"></td>
         </tr>
         <tr>
           <td><label for="email">Email</label></td>
           <td><input aria-label="input" type="text" id="email" name="email" placeholder="Email" value="{{user.email::input}}"></td>
         </tr>
       </table>
-      <button type="button" on-click="editUserProfile" indexed$=[[user.id]]><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
+      <button type="button" on-click="editUserProfile" indexed$=[[user.id]]><label class="save">Save</label>
+        <jha-icon-save aria-hidden="true"></jha-icon-save>
+      </button>
     </template>
   </template>
   <script type="module">
@@ -173,7 +194,7 @@
         return {
           user: {
             type: Object,
-            value: function() {
+            value: function () {
               return {
                 id: '',
                 firstName: '',
@@ -183,9 +204,9 @@
               };
             }
           },
-          firebaseApi: {
+          firebaseClass: {
             type: Object,
-         },
+          },
           isExpanded: {
             type: Boolean,
             value: true
@@ -194,7 +215,6 @@
             type: Boolean,
             value: false
           },
-          
           addUserSelected: {
             type: Boolean,
           },
@@ -221,7 +241,7 @@
 
       editUserProfile(event) {
         const userId = event.target.getAttribute('indexed');
-        this.firebaseApi.updateUser(userId, this.user);
+        firebaseClass.updateUser(userId, this.user);
         this.dispatchEvent(new CustomEvent("updateUsers", {
           bubbles: true,
           composed: true,
@@ -233,11 +253,11 @@
 
       deleteUserProfile(event) {
         const userId = event.target.getAttribute('indexed');
-        this.firebaseApi.deleteUser(userId);
+        this.firebaseClass.deleteUser(userId);
         this.dispatchEvent(new CustomEvent("updateUsers", {
           bubbles: true,
           composed: true,
-          detail:  this.user 
+          detail: this.user
         }));
       }
 
@@ -261,4 +281,4 @@
     customElements.define(UserProfile.is, UserProfile);
     export default UserProfile;
   </script>
-  </dom-module>
+</dom-module>

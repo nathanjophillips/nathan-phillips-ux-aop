@@ -13,6 +13,7 @@
         width: 400px;
         display: block;
       }
+
       @media (max-width: 600px) {
         user-profile {
           width: 200px;
@@ -21,15 +22,15 @@
       }
     </style>
     <template is="dom-if" if="[[addUserSelected]]">
-      <user-profile 
+      <user-profile
         add-user-selected="[[addUserSelected]]"
-        local-storage-class="[[firebaseApi]]">
+        firebase-class="[[firebaseClass]]">
       </user-profile>
     </template>
     <template is="dom-repeat" items="[[userProfiles]]">
-      <user-profile
+      <user-profile 
         user="[[item]]"
-        local-storage-class="[[firebaseApi]]"
+        firebase-class="[[firebaseClass]]"
         is-populated>
       </user-profile>
     </template>
@@ -44,9 +45,9 @@
           userProfiles: {
             type: Array,
           },
-          firebaseApi: {
+          firebaseClass: {
             type: Object,
-         },
+          },
           addUserSelected: {
             type: Boolean,
           },
