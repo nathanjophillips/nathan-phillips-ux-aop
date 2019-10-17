@@ -78,7 +78,7 @@
    <template is="dom-if" if="[[!addUserSelected]]">
      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add></jha-icon-person-add></button>
    </template>
-   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" local-storage-class="[[firebaseApi]]"></user-list>
+   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" firebase-class="[[firebaseClass]]"></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
       <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users<jha-icon-delete></jha-icon-delete></button>
    </template>
@@ -88,7 +88,6 @@
   import firebase from "firebase/app";
   import "firebase/database";
   import firebaseApi from "../api/firebase-api.js";
-  // import localStorageApi from "../api/local-storage.js";
   
    // Initialize Firebase
   const firebaseConfig = {
@@ -109,6 +108,10 @@
        return {
          userProfiles: {
            type: Array,
+           value: () => firebaseApi.getUsers()
+         },
+         firebaseClass: {
+           type: Object,
            value: () => firebaseApi.getUsers()
          },
          addUserSelected: {
@@ -134,7 +137,6 @@
        super();
        this.boundNewUser = this.newUser.bind(this);
        this.boundUpdateUsers = this.updateUsers.bind(this);
-       firebaseApi.getUsers();
      }
 
      connectedCallback() {
@@ -150,27 +152,27 @@
      }
 
      updateUsers(event) {
-      this.set('userProfiles', this.firebaseApi.getUsers());
+      this.set('userProfiles', firebaseApi.getUsers());
      }
 
      newUser(event) {
        const newUserProfile = event.detail;
-       newUserProfile.id = this.firebaseApi.genId();
+       newUserProfile.id = firebaseApi.genId();
        this.pushToArray(this.userProfiles, newUserProfile);
        this.addUserSelected = false;
      }
 
      deleteAll() {
        if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', this.firebaseApi.deleteUsers());
+         this.set('userProfiles', firebaseApi.deleteUsers());
        }
      }
 
      pushToArray(userProfiles, newUserProfile) {
-       if (this.firebaseApi.validateUser(newUserProfile)) {
-         this.firebaseApi.createUser(newUserProfile);
+      //  if (firebaseApi.validateUser(newUserProfile)) {
+         firebaseApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
-       }
+      //  }
      }
 
      createNewUserProfile(event) {
