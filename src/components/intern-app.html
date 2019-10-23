@@ -89,7 +89,6 @@
   import "firebase/database";
   import firebaseApi from "../api/firebase-api.js";
   
-   // Initialize Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyAF2m66MvU-JyOkS4Q7u4YH10Vf30zT2tU",
     authDomain: "apprentice-onboarding-project.firebaseapp.com",
@@ -169,10 +168,8 @@
      }
 
      pushToArray(userProfiles, newUserProfile) {
-      //  if (firebaseApi.validateUser(newUserProfile)) {
          firebaseApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
-      //  }
      }
 
      createNewUserProfile(event) {
