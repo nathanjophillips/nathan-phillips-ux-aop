@@ -78,7 +78,7 @@
    <template is="dom-if" if="[[!addUserSelected]]">
      <button class="add-button" type="button" on-click="createNewUserProfile">[[changeButtonText(addUserSelected)]]<jha-icon-person-add></jha-icon-person-add></button>
    </template>
-   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" firebase-class="[[firebaseClass]]"></user-list>
+   <user-list user-profiles="[[userProfiles]]" add-user-selected="[[addUserSelected]]" firebase-class="[[firebaseClass]]" is-populated=[[isPopulated]]></user-list>
    <template is="dom-if" if="[[cardsPopulated]]">
       <button class="delete-all-button" type="button" on-click="deleteAll">Delete All Users<jha-icon-delete></jha-icon-delete></button>
    </template>
@@ -99,6 +99,7 @@
     appId: "1:345149786368:web:ff2602b484e176aa"
   };
   firebase.initializeApp(firebaseConfig);
+
 
   class InternApp extends Polymer.Element {
     static get is() { return 'intern-app'; }
@@ -161,16 +162,16 @@
        this.addUserSelected = false;
      }
 
-     deleteAll() {
-       if (window.confirm("Are you sure you want to delete all users?")) {
-         this.set('userProfiles', firebaseApi.deleteAll());
-       }
-     }
-
      pushToArray(userProfiles, newUserProfile) {
          firebaseApi.createUser(newUserProfile);
          this.push('userProfiles', newUserProfile);
      }
+
+    //  deleteAll() {
+    //    if (window.confirm("Are you sure you want to delete all users?")) {
+    //      this.set('userProfiles', firebaseApi.deleteAll());
+    //    }
+    //  }
 
      createNewUserProfile(event) {
        this.addUserSelected = !this.addUserSelected;

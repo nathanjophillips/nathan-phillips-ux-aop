@@ -108,6 +108,7 @@
         }
       }
     </style>
+    <!-- // View 1 New User -->
     <template is="dom-if" if="[[addUserSelected]]">
       <table>
         <tr>
@@ -129,6 +130,8 @@
       </table>
       <button type="button" on-click="newProfile"><label class="save">Save</label><jha-icon-save aria-hidden="true"></jha-icon-save></button>
     </template>
+
+    <!-- // View 2 Full User -->
     <template is="dom-if" if="[[isPopulated]]">
       <jha-avatar>
         <img src="../assets/img/space.jpg" alt="[[user.firstName]] [[user.lastName]]">
@@ -161,6 +164,8 @@
       <button type="button" on-click="enterEditUserProfile">Edit<jha-icon-edit aria-hidden="true"></jha-icon-edit></button>
       <button class="delete" type="button" on-click="deleteUserProfile" indexed$=[[user.id]]>Delete<jha-icon-delete aria-hidden="true"></jha-icon-delete></button>
     </template>
+
+    <!-- // View 3 Edit User -->
     <template is="dom-if" if="[[editSelected]]">
       <table>
         <tr>
